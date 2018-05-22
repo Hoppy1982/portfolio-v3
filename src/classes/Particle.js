@@ -5,12 +5,12 @@ class Particle {
     this.distMoved = distMoved
   }
 
-  draw(ctx, color) {//default self render for particles, maybe change later
+  draw(ctx) {//default self render for particles, maybe change later
     ctx.beginPath()
     ctx.lineWidth = 3
-    ctx.strokeStyle = color
-    ctx.fillStyle = 'black'
-    ctx.arc(this.coords.x, this.coords.y, 3, 0, Math.PI * 2, false)
+    ctx.strokeStyle = 'black'
+    ctx.fillStyle = 'white'
+    ctx.arc(this.coords.x, this.coords.y, 2, 0, Math.PI * 2, false)
     ctx.stroke()
     ctx.fill()
   }

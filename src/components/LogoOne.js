@@ -6,17 +6,17 @@ import SinglePathCubicBezParticle from '../classes/SinglePathCubicBezParticle'
 class LogoOne extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      frameId: 0
-    }
 
     let canvas
+    let canvasWidth
+    let canvasHeight
     let ctx
-    //let frameId
+    let frameId
     let curves
     let particles
 
     this.animate = this.animate.bind(this)
+    this.renderCurves = this.renderCurves.bind(this)
   }
 
   componentDidMount() {
@@ -28,10 +28,10 @@ class LogoOne extends Component {
   initCanvas() {
     this.canvas = this.refs.canvas
     this.ctx = this.canvas.getContext("2d")
-    const curveColor = '#222'
-    const curveLineWidth = 2
     const padding = 20
     const { width, height } = this.props
+    this.canvasWidth = width
+    this.canvasHeight = height
     const center = {x: width / 2, y: height / 2}
     const topLeft = {x: width / padding, y: height / padding}
     const topRight = {x: width - (width / padding), y: height / padding}
@@ -74,25 +74,17 @@ class LogoOne extends Component {
         y0: center.y,
         x1: bottomLeft.x,
         y1: bottomLeft.y,
-        cp1x: width,
+        cp1x: 0,
         cp1y: height * 0.75,
-        cp2x: 0,
+        cp2x: width,
         cp2y: height * 0.75
       }
     ]
 
-    this.curves.forEach((curve) => {
-      this.ctx.beginPath()
-      this.ctx.strokeStyle = curveColor
-      this.ctx.lineWidth = curveLineWidth
-      this.ctx.moveTo(curve.x0, curve.y0)
-      this.ctx.bezierCurveTo(curve.cp1x, curve.cp1y, curve.cp2x, curve.cp2y, curve.x1, curve.y1)
-      this.ctx.stroke()
-    })
 
-    this.curves.forEach((curve) => {
-      let distMoved = 0
-      let speed = 0.01
+    this.curves.forEach((curve, index) => {
+      let distMoved = index * 0.2
+      let speed = 0.005
       let coords = {
         x0: curve.x0,
         y0: curve.y0,
@@ -113,13 +105,27 @@ class LogoOne extends Component {
 
 
   animate() {
-    this.setState({
-      frameId : requestAnimationFrame(this.animate)
-    })
-
+    this.frameId = requestAnimationFrame(this.animate)
+    this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+    this.renderCurves()
     this.particles.forEach((particle) => {
-      particle.draw(this.ctx, 'black')
+      particle.draw(this.ctx)
       particle.updatePos()
+    })
+  }
+
+
+  renderCurves() {
+    const curveColor = '#222'
+    const curveLineWidth = 2
+
+    this.curves.forEach((curve) => {
+      this.ctx.beginPath()
+      this.ctx.strokeStyle = curveColor
+      this.ctx.lineWidth = curveLineWidth
+      this.ctx.moveTo(curve.x0, curve.y0)
+      this.ctx.bezierCurveTo(curve.cp1x, curve.cp1y, curve.cp2x, curve.cp2y, curve.x1, curve.y1)
+      this.ctx.stroke()
     })
   }
 
