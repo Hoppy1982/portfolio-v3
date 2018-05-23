@@ -1,19 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
 header {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 1em;
+  flex: 0 0 auto;
 }
 
 .bottomLine {
-  width: 4vw;
   height: 8px;
   background: #222;
   border-radius: 4px;
   margin-top: 1em;
+  width: 4%;
+  transition: width 1s;
 }
 
 .bottomLineWide {
-  width: 96vw;
+  width: 86%;
 }

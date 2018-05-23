@@ -1,0 +1,28 @@
+nav {
+  flex: 0 0 auto;
+  background: #222;
+  width: 100%;
+  margin-top: 2em;
+  color: white;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+li {
+  list-style: none;
+  height: 2em;
+  line-height: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+li:hover {
+  cursor: pointer;
+}
