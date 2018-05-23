@@ -1,12 +1,13 @@
 
-const canvasHelpers = require('../utils/canvasHelpers')
-const Particle = require('./Particle.js')
+import canvasHelpers from '../utils/canvasHelpers'
+import Particle from './Particle'
 
 class HoldPatternParticle extends Particle {
   constructor(coords, speed, distMoved, nextWP) {
     super(coords, speed, distMoved)
     this.nextWP = nextWP
   }
+
 
   updatePos(HOLD_PATTERN_WAYPOINTS, holdPatternWaypointsActual, HOLD_SPEED) {
     this.distMoved += this.speed
@@ -28,4 +29,5 @@ class HoldPatternParticle extends Particle {
   }
 }
 
-module.exports = HoldPatternParticle
+
+export default HoldPatternParticle

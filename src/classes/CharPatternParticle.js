@@ -1,5 +1,5 @@
-const canvasHelpers = require('../utils/canvas-helpers')
-const Particle = require('./Particle')
+import canvasHelpers from '../utils/canvasHelpers'
+import Particle from './Particle'
 
 class CharPatternParticle extends Particle {
   constructor(coords, speed, distMoved, pointsAt) {
@@ -46,4 +46,4 @@ class CharPatternParticle extends Particle {
   }
 }
 
-module.exports = CharPatternParticle
+export default CharPatternParticle
