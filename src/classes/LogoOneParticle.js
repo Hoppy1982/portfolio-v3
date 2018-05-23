@@ -1,9 +1,30 @@
 import canvasHelpers from '../utils/canvasHelpers'
 import Particle from './Particle.js'
 
-class SinglePathCubicBezParticle extends Particle {
-  constructor(coords, speed, distMoved) {
+class LogoOneParticle extends Particle {
+  constructor(coords, speed, distMoved, reversing) {
     super(coords, speed, distMoved)
+  }
+
+  draw(ctx) {
+    const color = 'black'
+    ctx.beginPath()
+    ctx.fillStyle = color
+    ctx.arc(this.coords.x, this.coords.y, 2, 0, Math.PI * 2, false)
+    ctx.fill()
+
+    ctx.beginPath()
+    ctx.strokeStyle = color
+    ctx.lineWidth = 2
+    if(this.reversing === true) {
+      ctx.moveTo(this.coords.x1, this.coords.y1)
+      ctx.bezierCurveTo(this.coords.cp1x, this.coords.cp1y, this.coords.cp2x, this.coords.cp2y, this.coords.x, this.coords.y)
+    } else {
+      ctx.moveTo(this.coords.x0, this.coords.y0)
+      ctx.bezierCurveTo(this.coords.cp2x, this.coords.cp2y, this.coords.cp1x, this.coords.cp1y, this.coords.x, this.coords.y)
+    }
+
+    ctx.stroke()
   }
 
   updatePos() {
@@ -31,6 +52,7 @@ class SinglePathCubicBezParticle extends Particle {
         cp2y: prevCoords.cp1y
       }
       this.distMoved = 0
+      this.reversing = !this.reversing
 
 
     }
@@ -39,4 +61,4 @@ class SinglePathCubicBezParticle extends Particle {
   }
 }
 
-export default SinglePathCubicBezParticle
+export default LogoOneParticle

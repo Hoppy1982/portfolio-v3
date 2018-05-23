@@ -7,9 +7,13 @@ header {
 }
 
 .bottomLine {
-  width: 96vw;
+  width: 4vw;
   height: 8px;
   background: #222;
   border-radius: 4px;
   margin-top: 1em;
+}
+
+.bottomLineWide {
+  width: 96vw;
 }

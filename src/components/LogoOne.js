@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styles from './logoOne.css'
-import SinglePathCubicBezParticle from '../classes/SinglePathCubicBezParticle'
+import LogoOneParticle from '../classes/LogoOneParticle'
 
 
 class LogoOne extends Component {
@@ -37,53 +37,98 @@ class LogoOne extends Component {
     const topRight = {x: width - (width / padding), y: height / padding}
     const bottomLeft = {x: width / padding, y: height - (height / padding)}
     const bottomRight = {x: width - (width / padding), y: height - (height / padding)}
+    const topCenter = {x: width / 2, y: height /padding}
+    const bottomCenter = {x: width / 2, y: height - (height / padding)}
+    const leftCenter = {x: width / padding, y: height / 2}
+    const rightCenter = {x: width - (width / padding), y: height / 2}
     this.particles = []
     this.curves = [
       {
         x0: center.x,
         y0: center.y,
-        x1: topLeft.x,
-        y1: topLeft.y,
+        x1: topCenter.x,
+        y1: topCenter.y,
         cp1x: width * 0.25,
-        cp1y: height,
-        cp2x: width * 0.25,
-        cp2y: 0
+        cp1y: height * 0.375,
+        cp2x: width * 0.75,
+        cp2y: height * 0.25
       },
       {
         x0: center.x,
         y0: center.y,
-        x1: bottomRight.x,
-        y1: bottomRight.y,
+        x1: bottomCenter.x,
+        y1: bottomCenter.y,
         cp1x: width * 0.75,
-        cp1y: 0,
+        cp1y: height * 0.625,
+        cp2x: width * 0.25,
+        cp2y: height * 0.75
+      },
+      {
+        x0: center.x,
+        y0: center.y,
+        x1: leftCenter.x,
+        y1: leftCenter.y,
+        cp1x: width * 0.375,
+        cp1y: height * 0.75,
+        cp2x: width * 0.25,
+        cp2y: height * 0.25
+      },
+      {
+        x0: center.x,
+        y0: center.y,
+        x1: rightCenter.x,
+        y1: rightCenter.y,
+        cp1x: width * 0.625,
+        cp1y: height * 0.25,
         cp2x: width * 0.75,
-        cp2y: height
+        cp2y: height * 0.75
+      },
+      {
+        x0: center.x,
+        y0: center.y,
+        x1: topLeft.x,
+        y1: topLeft.y,
+        cp1x: width * 0.125,
+        cp1y: height * 0.5,
+        cp2x: width * 0.375,
+        cp2y: 0
       },
       {
         x0: center.x,
         y0: center.y,
         x1: topRight.x,
         y1: topRight.y,
-        cp1x: 0,
-        cp1y: height * 0.25,
+        cp1x: width * 0.5,
+        cp1y: height * 0.125,
         cp2x: width,
-        cp2y: height * 0.25
+        cp2y: height * 0.375
       },
       {
         x0: center.x,
         y0: center.y,
         x1: bottomLeft.x,
         y1: bottomLeft.y,
-        cp1x: 0,
-        cp1y: height * 0.75,
-        cp2x: width,
-        cp2y: height * 0.75
-      }
+        cp1x: width * 0.5,
+        cp1y: height * 0.875,
+        cp2x: 0,
+        cp2y: height * 0.625
+      },
+      {
+        x0: center.x,
+        y0: center.y,
+        x1: bottomRight.x,
+        y1: bottomRight.y,
+        cp1x: width * 0.875,
+        cp1y: height * 0.5,
+        cp2x: width * 0.625,
+        cp2y: height
+      },
     ]
 
 
     this.curves.forEach((curve, index) => {
-      let distMoved = index * 0.2
+      let reversing = false
+      let distMoved = 0
       let speed = 0.005
       let coords = {
         x0: curve.x0,
@@ -97,7 +142,7 @@ class LogoOne extends Component {
         x: curve.x0,
         y: curve.y0
       }
-      let particle = new SinglePathCubicBezParticle(coords, speed, distMoved)
+      let particle = new LogoOneParticle(coords, speed, distMoved, reversing)
 
       this.particles.push(particle)
     })
@@ -107,7 +152,7 @@ class LogoOne extends Component {
   animate() {
     this.frameId = requestAnimationFrame(this.animate)
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-    this.renderCurves()
+    //this.renderCurves()
     this.particles.forEach((particle) => {
       particle.draw(this.ctx)
       particle.updatePos()
@@ -117,7 +162,7 @@ class LogoOne extends Component {
 
   renderCurves() {
     const curveColor = '#222'
-    const curveLineWidth = 2
+    const curveLineWidth = 1
 
     this.curves.forEach((curve) => {
       this.ctx.beginPath()
