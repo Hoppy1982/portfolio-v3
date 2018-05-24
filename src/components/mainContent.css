@@ -6,10 +6,56 @@ main {
   justify-content: space-around;
 }
 
-#particleAlphabetOneControls {
+.contentContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+.contentDescription {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 40%;
+}
+
+.contentDescription p {
   margin-top: 1em;
+  text-align: justify;
+  margin-bottom: 1em;
+}
+
+.contentDescription ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.control {
+  margin: 0.5em;
+}
+
+@media all and (max-width: 800px) {
+  .contentContainer {
+    flex-direction: column;
+  }
+
+  .contentDescription {
+    max-width: 80%;
+  }
 }

@@ -66,7 +66,7 @@ function coordsOnCubicBezier(percent, startPt, cp1, cp2, endPt) {//stolen from s
 function renderBoundingCircle(ctx, canvasWidth, canvasHeight) {
   let centerX = canvasWidth / 2
   let centerY = canvasHeight / 2
-  let radius = centerY > centerX ? centerX - 2 : centerY - 2
+  let radius = centerY > centerX ? centerX - 2 : centerY
   let startAngle = 0
   let endAngle = 2 * Math.PI
   ctx.lineWidth = 1

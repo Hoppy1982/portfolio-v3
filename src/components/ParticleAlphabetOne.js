@@ -14,7 +14,7 @@ class ParticleAlphabetOne extends Component {
 
     this.CHAR_PATTERN_WORDS = 'DEFAULT'
     this.MAX_CHARS_PER_ROW = 12
-    this.TOTAL_PARTICLES = 400
+    this.TOTAL_PARTICLES = 200
     this.HOLD_PATTERN_WAYPOINTS = [//coords as % of canvas size
       {x: 0.125, y: 0.5},
       {x: 0.25, y: 0.125},
@@ -51,6 +51,8 @@ class ParticleAlphabetOne extends Component {
   init() {
     this.CHAR_PATTERN_WORDS = this.props.targetWord
     this.reset()
+    this.canvasWidth = this.props.canvasWidth
+    this.canvasHeight = this.props.canvasHeight
     //setLayout()
     //NAV_TOPIC_ELEMENT.innerHTML = carousel2d.getNavTopicText()
     //navItemDescription.innerHTML = carousel2d.getNavItemDesc()
@@ -167,9 +169,16 @@ class ParticleAlphabetOne extends Component {
   animate() {
     this.frameId = requestAnimationFrame(this.animate)
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-    //canvasHelpers.renderBoundingCircle(ctx, canvasWidth, canvasHeight)//dev
-    //canvasHelpers.renderHoldPatternWPs(ctx, holdPatternWaypointsActual)//dev
-    //canvasHelpers.renderHoldPatternParticlePaths(ctx, holdPatternParticles)//dev
+    //canvasHelpers.renderBoundingCircle(this.ctx, this.canvasWidth, this.canvasHeight)//dev
+
+    if(this.props.renderWaypoints === true) {
+      canvasHelpers.renderHoldPatternWPs(this.ctx, this.holdPatternWaypointsActual)
+    }
+
+    if(this.props.renderPaths === true) {
+      canvasHelpers.renderHoldPatternParticlePaths(this.ctx, this.holdPatternParticles)
+    }
+
     this.updateHoldPatternParticles()
     this.updateCharPatternParticles()
   }
@@ -210,9 +219,7 @@ class ParticleAlphabetOne extends Component {
 
   render() {
     return(
-      <div className="tempWrapper">
-        <canvas ref={this.storeRef} width={this.props.canvasWidth} height={this.props.canvasHeight}></canvas>
-      </div>
+      <canvas ref={this.storeRef} width={this.props.canvasWidth} height={this.props.canvasHeight} id="particleOneCanvas"></canvas>
     )
   }
 }
