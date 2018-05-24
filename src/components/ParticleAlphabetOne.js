@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './contentParticleAlphabetOne.css'
+import styles from './particleAlphabetOne.css'
 
 import canvasHelpers from '../utils/canvasHelpers'
 import lettersLib from '../utils/lettersLib'
@@ -12,9 +12,9 @@ class ParticleAlphabetOne extends Component {
   constructor(props) {
     super(props)
 
-    this.CHAR_PATTERN_WORDS = 'YAY ANOTHER NEW BUG'
+    this.CHAR_PATTERN_WORDS = 'DEFAULT'
     this.MAX_CHARS_PER_ROW = 12
-    this.TOTAL_PARTICLES = 200
+    this.TOTAL_PARTICLES = 400
     this.HOLD_PATTERN_WAYPOINTS = [//coords as % of canvas size
       {x: 0.125, y: 0.5},
       {x: 0.25, y: 0.125},
@@ -31,14 +31,25 @@ class ParticleAlphabetOne extends Component {
     this.charPatternParticles = []
     this.frameId
 
+    this.storeRef = this.storeRef.bind(this)
     this.animate = this.animate.bind(this)
+    this.reset = this.reset.bind(this)
+  }
+
+
+
+//---------------------------STRING REFS ARE DEPRECATED SO USE JAKES WAY
+  storeRef = (element) => {
+    this.element = element
+    if(element !== null)  {//no ide why but I think unmount is somehow calling this function which breaks without this bit
+      this.ctx = element.getContext('2d')
+    }
   }
 
 
 //---------------------------------------------------FLOW CONTROL & INITIALIZERS
   init() {
-    this.canvas = this.refs.canvas
-    this.ctx = this.canvas.getContext("2d")
+    this.CHAR_PATTERN_WORDS = this.props.targetWord
     this.reset()
     //setLayout()
     //NAV_TOPIC_ELEMENT.innerHTML = carousel2d.getNavTopicText()
@@ -175,8 +186,8 @@ class ParticleAlphabetOne extends Component {
   updateCharPatternParticles() {
     this.charPatternParticles.forEach((particle, index) => {
       particle.updatePos()
-      particle.draw(this.ctx, 'white', 'red')
-      particle.drawToPointsAt(this.ctx, this.charPatternParticles, index, '#1f2633', '#ff0000')
+      particle.draw(this.ctx)
+      particle.drawToPointsAt(this.ctx, this.charPatternParticles, index)
     })
   }
 
@@ -187,10 +198,20 @@ class ParticleAlphabetOne extends Component {
   }
 
 
+  componentDidUpdate() {
+    this.init()
+  }
+
+
+  componentWillUnmount() {
+    this.reset()
+  }
+
+
   render() {
     return(
       <div className="tempWrapper">
-        <canvas ref="canvas" width={this.props.canvasWidth} height={this.props.canvasHeight}></canvas>
+        <canvas ref={this.storeRef} width={this.props.canvasWidth} height={this.props.canvasHeight}></canvas>
       </div>
     )
   }

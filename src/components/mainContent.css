@@ -5,3 +5,11 @@ main {
   align-items: center;
   justify-content: space-around;
 }
+
+#particleAlphabetOneControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1em;
+}
