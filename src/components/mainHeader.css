@@ -9,6 +9,7 @@ header {
   align-items: center;
   padding-top: 1em;
   flex: 0 0 auto;
+  font-family: lato;
 }
 
 .bottomLine {

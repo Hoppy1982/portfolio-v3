@@ -20,9 +20,9 @@ class CharPatternParticle extends Particle {
     ctx.beginPath()
     ctx.lineWidth = 3
     let rgb = canvasHelpers.colorBetweenTwoColors(this.distMoved, '#ffffff', '#0000ff')//dev
-    ctx.strokeStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
+    ctx.strokeStyle = 'black'
     //ctx.strokeStyle = this.distMoved < 1 ? colorFrom : colorTo//write function to transition between 2 colours that takes % as an arg
-    ctx.fillStyle = 'black'
+    ctx.fillStyle = 'white'
     ctx.arc(this.coords.x, this.coords.y, 2, 0, Math.PI * 2, false)
     ctx.stroke()
     ctx.fill()
