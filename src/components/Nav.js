@@ -11,7 +11,8 @@ class Nav extends Component {
       <nav>
         <ul>
           <li onClick={() => this.props.onSelectContent("home")}>Home</li>
-          <li onClick={() => this.props.onSelectContent("particleAlphabet#1")}>Particle Alphabet #1</li>
+          <li onClick={() => this.props.onSelectContent("particleAlphabet#1")}>Particle Alphabet</li>
+          <li onClick={() => this.props.onSelectContent("worldBankAPI")}>World Bank API</li>
         </ul>
       </nav>
     )

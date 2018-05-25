@@ -93,13 +93,14 @@ class ContentOne extends Component {
           <div className='contentDescription'>
             <h4>Particle Alphabet</h4>
             <p>
-              I made this without using any libraries with the idea that it would
-              be good practice at using classes to organise the different particle
-              behaviours. Originally I thought I could use it as full page navigation
-              system. I was going to have the particles form the chosen nav link then all
-              zoom off down a wormhole. They'd then zoom out of wormhole on the destination
-              page and do something else like make an animated pomodoro timer. In the end I
-              settled on leaving it as a self contained little project.
+              I made this in plain old javascript without using any libraries other
+              than React with the idea that it would be good practice at using
+              classes to organise the different particle behaviours. Originally
+              I thought I could use it as full page navigation system. I was going
+              to have the particles form the chosen nav link then all zoom off down
+              a wormhole. They'd then zoom out of wormhole on the destination
+              page and do something else like make an animated pomodoro timer.
+              In the end though I settled on leaving it as a self contained project.
             </p>
             <h4>How It Works</h4>
             <p>
