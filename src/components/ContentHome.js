@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './contentAll.css'
+import styles from './contentHome.css'
 
 function ContentHome() {
   return(
