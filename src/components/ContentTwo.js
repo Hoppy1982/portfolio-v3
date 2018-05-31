@@ -96,6 +96,19 @@ DATA STRUCTURE
     })
   }
 
+/*Jakes advice
+  const promises = countries.map(this.fetchPopulation);
+
+  Promise
+    .all(promises)
+    .then(([country1data, country2data]) => {
+
+    });
+*/
+
+/*Modified from above
+  const populationsPromises = this.state.countries.map(this.fetchPopulation)
+*/
 
   fetchPopulation(country) {
     //full url for dev http://api.worldbank.org/v2/countries/gbr/indicators/SP.POP.TOTL
@@ -103,25 +116,20 @@ DATA STRUCTURE
     const baseUrl = this.state.baseUrl
     const url = `${baseUrl}/countries/${country}/indicators/${series}?format=json`
 
-    let promise = new Promise((resolve, reject) => {
-      fetch(url)
-      .then(res => {
-        if(res.ok) {
-          return res
-        }
-        reject('Network response not ok')
-      })
-      .then(res => res.json())
-      .then(json => json[1])
-      .then(allData => {
-        return allData.map(el => {
-          return {year: el.date, population: el.value}
-        })
-      })
-      .then(population => resolve(population))
+    return fetch(url)
+    .then(res => {
+      if(res.ok) {return res}
+      throw 'Network response not ok'
     })
-
-    return promise
+    .then(res => res.json())
+    .then(json => json[1])
+    .then(allData => {
+      return allData.map(el => {
+        return {year: el.date, population: el.value}
+      })
+    })
+    .catch(err => console.log(err))
+    .then(population => population)
   }
 
 
