@@ -16,99 +16,66 @@ class ContentTwo extends Component {
       yearTo: 2016,
       showPercents: true,
       showAbsolute: true,
-      populations: []
+      amalgamatedData: []
     }
   }
 
 
- /*
-SELECTIONS PROVIED
-- countries
-- year from
-- year to
-- absolute or percent
+ /*Jakes advice
+   const promises = countries.map(this.fetchPopulation);
 
- DATA REQUIRED
-- energy consumption per capita
-- population
+   Promise
+     .all(promises)
+     .then(([country1data, country2data]) => {
 
-- percent energy from wind
-- percent energy from solar
-- percent energy from hydro
-- percent energy from coal
-- percent energy from gas
-- percent energy from nuclear
-
-- total energy from wind
-- total energy from solar
-- total energy from hydro
-- total energy from coal
-- total energy from gas
-- total energy from nuclear
-
-DATA STRUCTURE
-[
-  {
-    country: "",
-    powerSources: [
-      {
-        year: "",
-        population: null,
-        percent_wind: null,
-        percent_solar: null,
-        percent_hydro: null,
-        percent_coal: null,
-        percent_gas: null,
-        percent_nuclear: null,
-        absolute_wind: null,
-        absolute_solar: null,
-        absolute_hydro: null,
-        absolute_coal: null,
-        absolute_gas: null,
-        absolute_nuclear: null,
-        consumption_per_capita: null,
-        consumption_total: null
-      }
-    ]
-  }
-]
+     });
  */
+
+ /*Modified from above
+   const populationPromise = this.fetchPopulation(country)
+   const energyConsumptionPromise = this.fetchConsumption(country)
+   const percentCleanPromise = this.fetchClean(country)
+   const percentDirtyPromise = this.fetchDirty(country)
+   const promises = populationPromise.concat(energyConsumptionPromise, percentCleanPromise, percentDirtyPromise)
+
+   Promise
+     .all(promises)
+     .then(([popData, consumptionData, cleanData, dirtyData]) => {
+       amalgamateDatas(popData, consumptionData, cleanData, dirtyData)
+   })
+ */
+
+ // population SP.POP.TOTL
+ // energy consumption (kwh per capita) EG.USE.ELEC.KH.PC
+ // energy production from renewable sources, excluding hydro (% of total) sEG.ELC.RNWX.ZS
+ // energy production from oil, gas & coal (% of total) EG.ELC.FOSL.ZS
+
 
   fetchData() {
     //for each country in list
-    //  [] = fetch population
-    //  [] = fetch consumption_per_capita
-    //  [] = fetch percent(wind...nuclear)
-    //when above all done
-    // insert from individual arrs to final data structure arr
-    // calculate absolutes
-
-    let populations = []
+    //  fetch population
+    //  fetch consumption_per_capita
+    //  fetch percentClean
+    //  fetch percentDirty
+    //when above all resolved
+    // amalgamateDatas
 
     for(let i = 0; i < this.state.countries.length; i++) {
-      let country = this.state.countries[i]
+      const country = this.state.countries[i]
       console.log(`Fetching data for: ${country}..`)
-      populations[i] = this.fetchPopulation(country)
-    }
 
-    Promise.all(populations).then((values) => {
-      console.log(values[0][10])
-    })
+      const populationPromise = this.fetchPopulation(country)
+      const consumptionPromise = this.fetchConsumption(country)
+      const promises = [populationPromise, consumptionPromise]
+
+      Promise
+        .all(promises)
+        .then(([popData, consumptionData]) => {
+          this.amalgamateDatas(popData, consumptionData)
+        })
+    }
   }
 
-/*Jakes advice
-  const promises = countries.map(this.fetchPopulation);
-
-  Promise
-    .all(promises)
-    .then(([country1data, country2data]) => {
-
-    });
-*/
-
-/*Modified from above
-  const populationsPromises = this.state.countries.map(this.fetchPopulation)
-*/
 
   fetchPopulation(country) {
     //full url for dev http://api.worldbank.org/v2/countries/gbr/indicators/SP.POP.TOTL
@@ -133,6 +100,37 @@ DATA STRUCTURE
   }
 
 
+  fetchConsumption(country) {
+    //full url for dev http://api.worldbank.org/v2/countries/gbr/indicators/EG.USE.ELEC.KH.PC
+    const series = 'EG.USE.ELEC.KH.PC'
+    const baseUrl = this.state.baseUrl
+    const url = `${baseUrl}/countries/${country}/indicators/${series}?format=json`
+
+    return fetch(url)
+    .then(res => {
+      if(res.ok) {return res}
+      throw 'Network response not ok'
+    })
+    .then(res => res.json())
+    .then(json => json[1])
+    .then(allData => {
+      return allData.map(el => {
+        return {year: el.date, consumptionPerCapita: el.value}
+      })
+    })
+    .catch(err => console.log(err))
+    .then(consumption => consumption)
+  }
+
+
+  amalgamateDatas(popData, consumptionData) {
+    console.log('Population Data:')
+    console.log(popData)
+    console.log('Consumption Data:')
+    console.log(consumptionData)
+  }
+
+
   componentDidMount() {
     this.fetchData()
   }
@@ -147,8 +145,3 @@ DATA STRUCTURE
 
 
 export default ContentTwo
-
-
-//http://api.worldbank.org/v2/countries/gbr/indicators/AG.LND.AGRI.ZS?per_page=100
-//http://api.worldbank.org/v2/countries/gbr/indicators/EG.USE.ELEC.KH.PC?per_page=100
-//http://api.worldbank.org/v2/countries/gbr/indicators/EG.ELC.COAL.ZS?per_page=100
