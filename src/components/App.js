@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './app.css'
+import './app.css'
 import MainHeader from './MainHeader'
 import MainContent from './MainContent'
 

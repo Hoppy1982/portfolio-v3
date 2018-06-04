@@ -412,7 +412,6 @@ function totalRequiredParticles(str) {
     requiredParticles += lettersCoords[str.charAt(i)].length
   }
 
-  console.log("total requiredParticles: " + requiredParticles)
   return requiredParticles
 }
 

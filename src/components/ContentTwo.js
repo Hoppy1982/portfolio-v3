@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './contentTwo.css'
+import './contentTwo.css'
 
 
 class ContentTwo extends Component {
@@ -31,49 +31,62 @@ class ContentTwo extends Component {
      });
  */
 
- /*Modified from above
-   const populationPromise = this.fetchPopulation(country)
-   const energyConsumptionPromise = this.fetchConsumption(country)
-   const percentCleanPromise = this.fetchClean(country)
-   const percentDirtyPromise = this.fetchDirty(country)
-   const promises = populationPromise.concat(energyConsumptionPromise, percentCleanPromise, percentDirtyPromise)
-
-   Promise
-     .all(promises)
-     .then(([popData, consumptionData, cleanData, dirtyData]) => {
-       amalgamateDatas(popData, consumptionData, cleanData, dirtyData)
-   })
- */
-
- // population SP.POP.TOTL
- // energy consumption (kwh per capita) EG.USE.ELEC.KH.PC
- // energy production from renewable sources, excluding hydro (% of total) sEG.ELC.RNWX.ZS
- // energy production from oil, gas & coal (% of total) EG.ELC.FOSL.ZS
-
 
   fetchData() {
-    //for each country in list
-    //  fetch population
-    //  fetch consumption_per_capita
-    //  fetch percentClean
-    //  fetch percentDirty
-    //when above all resolved
-    // amalgamateDatas
-
     for(let i = 0; i < this.state.countries.length; i++) {
       const country = this.state.countries[i]
       console.log(`Fetching data for: ${country}..`)
 
       const populationPromise = this.fetchPopulation(country)
       const consumptionPromise = this.fetchConsumption(country)
-      const promises = [populationPromise, consumptionPromise]
+      const percentCleanPromise = this.fetchPercentClean(country)//wind & solar
+      const percentDirtyPromise = this.fetchPercentDirty(country)//oil, gas & coal
+      const percentNuclearPromise = this.fetchPercentNuclear(country)
+      const percentHydroPromise = this.fetchPercentHydro(country)
+      const promises = [
+        populationPromise,
+        consumptionPromise,
+        percentCleanPromise,
+        percentDirtyPromise,
+        percentNuclearPromise,
+        percentHydroPromise
+      ]
 
       Promise
         .all(promises)
-        .then(([popData, consumptionData]) => {
-          this.amalgamateDatas(popData, consumptionData)
+        .then(([
+          popData,
+          consumptionData,
+          percentCleanData,
+          percentDirtyData,
+          percentNuclearData,
+          percentHydroData
+        ]) => {
+          this.amalgamateDatas(
+            popData,
+            consumptionData,
+            percentCleanData,
+            percentDirtyData,
+            percentNuclearData,
+            percentHydroData)
         })
     }
+  }
+
+
+  amalgamateDatas(popData, consumptionData, percentCleanData, precentDirtyData, percentNuclearData, percentHydroData) {
+    console.log('Population:')
+    console.log(popData)
+    console.log('Energy Consumption, kwh Per Capita:')
+    console.log(consumptionData)
+    console.log('Percentage Energy Produced By Renenewables, Excluding Hydro:')
+    console.log(percentCleanData)
+    console.log('Percentage Energy Produced By Oil, Gas & Coal:')
+    console.log(precentDirtyData)
+    console.log('Percentage Energy Produced By Nuclear:')
+    console.log(percentNuclearData)
+    console.log('Percentage Energy Produced By Hydro:')
+    console.log(percentHydroData)
   }
 
 
@@ -86,13 +99,13 @@ class ContentTwo extends Component {
     return fetch(url)
     .then(res => {
       if(res.ok) {return res}
-      throw 'Network response not ok'
+      throw new Error ('Network response not ok')
     })
     .then(res => res.json())
     .then(json => json[1])
     .then(allData => {
       return allData.map(el => {
-        return {year: el.date, population: el.value}
+        return {country: el.country, year: el.date, population: el.value}
       })
     })
     .catch(err => console.log(err))
@@ -100,7 +113,7 @@ class ContentTwo extends Component {
   }
 
 
-  fetchConsumption(country) {
+  fetchConsumption(country) {//energy consumption (kwh per capita)
     //full url for dev http://api.worldbank.org/v2/countries/gbr/indicators/EG.USE.ELEC.KH.PC
     const series = 'EG.USE.ELEC.KH.PC'
     const baseUrl = this.state.baseUrl
@@ -109,13 +122,13 @@ class ContentTwo extends Component {
     return fetch(url)
     .then(res => {
       if(res.ok) {return res}
-      throw 'Network response not ok'
+      throw new Error ('Network response not ok')
     })
     .then(res => res.json())
     .then(json => json[1])
     .then(allData => {
       return allData.map(el => {
-        return {year: el.date, consumptionPerCapita: el.value}
+        return {country: el.country, year: el.date, consumptionPerCapita: el.value}
       })
     })
     .catch(err => console.log(err))
@@ -123,19 +136,105 @@ class ContentTwo extends Component {
   }
 
 
-  amalgamateDatas(popData, consumptionData) {
-    console.log('Population Data:')
-    console.log(popData)
-    console.log('Consumption Data:')
-    console.log(consumptionData)
+  fetchPercentClean(country) {//energy production from renewable sources, excluding hydro (% of total)
+    //full url for dev http://api.worldbank.org/v2/countries/gbr/indicators/EG.ELC.RNWX.ZS
+    const series = 'EG.ELC.RNWX.ZS'
+    const baseUrl = this.state.baseUrl
+    const url = `${baseUrl}/countries/${country}/indicators/${series}?format=json`
+
+    return fetch(url)
+    .then(res => {
+      if(res.ok) {return res}
+      throw new Error ('Network response not ok')
+    })
+    .then(res => res.json())
+    .then(json => json[1])
+    .then(allData => {
+      return allData.map(el => {
+        return {country: el.country, year: el.date, percentClean: el.value}
+      })
+    })
+    .catch(err => console.log(err))
+    .then(percentClean => percentClean)
   }
 
 
+  fetchPercentDirty(country) {//energy production from oil, gas & coal (% of total)
+    //full url for dev http://api.worldbank.org/v2/countries/gbr/indicators/EG.ELC.FOSL.ZS
+    const series = 'EG.ELC.FOSL.ZS'
+    const baseUrl = this.state.baseUrl
+    const url = `${baseUrl}/countries/${country}/indicators/${series}?format=json`
+
+    return fetch(url)
+    .then(res => {
+      if(res.ok) {return res}
+      throw new Error ('Network response not ok')
+    })
+    .then(res => res.json())
+    .then(json => json[1])
+    .then(allData => {
+      return allData.map(el => {
+        return {country: el.country, year: el.date, percentDirty: el.value}
+      })
+    })
+    .catch(err => console.log(err))
+    .then(percentDirty => percentDirty)
+  }
+
+
+  fetchPercentNuclear(country) {//energy production nuclear (% of total)
+    //full url for dev http://api.worldbank.org/v2/countries/gbr/indicators/EG.ELC.NUCL.ZS
+    const series = 'EG.ELC.NUCL.ZS'
+    const baseUrl = this.state.baseUrl
+    const url = `${baseUrl}/countries/${country}/indicators/${series}?format=json`
+
+    return fetch(url)
+    .then(res => {
+      if(res.ok) {return res}
+      throw new Error ('Network response not ok')
+    })
+    .then(res => res.json())
+    .then(json => json[1])
+    .then(allData => {
+      return allData.map(el => {
+        return {country: el.country, year: el.date, percentNuclear: el.value}
+      })
+    })
+    .catch(err => console.log(err))
+    .then(percentNuclear => percentNuclear)
+  }
+
+
+  fetchPercentHydro(country) {//energy production hydro (% of total)
+    //full url for dev http://api.worldbank.org/v2/countries/gbr/indicators/EG.ELC.HYRO.ZS
+    const series = 'EG.ELC.HYRO.ZS'
+    const baseUrl = this.state.baseUrl
+    const url = `${baseUrl}/countries/${country}/indicators/${series}?format=json`
+
+    return fetch(url)
+    .then(res => {
+      if(res.ok) {return res}
+      throw new Error ('Network response not ok')
+    })
+    .then(res => res.json())
+    .then(json => json[1])
+    .then(allData => {
+      return allData.map(el => {
+        return {country: el.country, year: el.date, percentHydro: el.value}
+      })
+    })
+    .catch(err => console.log(err))
+    .then(percentHydro => percentHydro)
+  }
+
+
+//------------------------------------------------------------LIFE CYCLE METHODS
   componentDidMount() {
     this.fetchData()
   }
 
 
+//----------------------------------------------------------------
   render() {
     return(
       <p>CONTENT TWO PLACEHOLDER</p>

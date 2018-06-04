@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import styles from './nav.css'
+import './nav.css'
 
 class Nav extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return(
       <nav>

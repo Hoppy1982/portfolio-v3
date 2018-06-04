@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './particleAlphabetOne.css'
+import './particleAlphabetOne.css'
 
 import canvasHelpers from '../utils/canvasHelpers'
 import lettersLib from '../utils/lettersLib'
@@ -29,7 +29,7 @@ class ParticleAlphabetOne extends Component {
     this.holdPatternWaypointsActual = []//coords in pixels, recalculated on resize
     this.holdPatternParticles = []
     this.charPatternParticles = []
-    this.frameId
+    this.frameId = null
 
     this.storeRef = this.storeRef.bind(this)
     this.animate = this.animate.bind(this)

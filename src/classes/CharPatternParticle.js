@@ -19,9 +19,8 @@ class CharPatternParticle extends Particle {
   draw(ctx) {
     ctx.beginPath()
     ctx.lineWidth = 3
-    let rgb = canvasHelpers.colorBetweenTwoColors(this.distMoved, '#ffffff', '#0000ff')//dev
-    ctx.strokeStyle = 'black'
-    //ctx.strokeStyle = this.distMoved < 1 ? colorFrom : colorTo//write function to transition between 2 colours that takes % as an arg
+    let rgb = canvasHelpers.colorBetweenTwoColors(this.distMoved, '#000000', '#0000ff')
+    ctx.strokeStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
     ctx.fillStyle = 'white'
     ctx.arc(this.coords.x, this.coords.y, 2, 0, Math.PI * 2, false)
     ctx.stroke()
@@ -31,13 +30,12 @@ class CharPatternParticle extends Particle {
   drawToPointsAt(ctx, charPatternParticles, index) {
     if(this.distMoved > 0.1) {
       if(this.pointsAt !== false) {
-        let pointsAtX = charPatternParticles[index + this.pointsAt].coords.x//these two lines are fucking things somehow deleting the last particle in the char I think
+        let pointsAtX = charPatternParticles[index + this.pointsAt].coords.x//these two lines are breaking things somehow deleting the last particle in the char I think
         let pointsAtY = charPatternParticles[index + this.pointsAt].coords.y
         ctx.beginPath()
         ctx.lineWidth = 3
         let rgb = canvasHelpers.colorBetweenTwoColors(this.distMoved, '#ffffff', '#0000ff')
         ctx.strokeStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
-        //ctx.strokeStyle = this.distMoved < 1 ? colorFrom : colorTo
         ctx.moveTo(this.coords.x, this.coords.y)
         ctx.lineTo(pointsAtX, pointsAtY)
         ctx.stroke()

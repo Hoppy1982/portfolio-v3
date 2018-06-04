@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './mainHeader.css'
+import './mainHeader.css'
 import LogoOne from './LogoOne'
 import Nav from './Nav'
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ParticleAlphabetOne from './ParticleAlphabetOne'
-import styles from './contentOne.css'
+import './contentOne.css'
 
 
 class ContentOne extends Component {

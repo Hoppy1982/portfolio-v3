@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './logoOne.css'
+import './logoOne.css'
 import LogoOneParticle from '../classes/LogoOneParticle'
 
 
@@ -7,13 +7,13 @@ class LogoOne extends Component {
   constructor(props) {
     super(props)
 
-    let canvas
-    let canvasWidth
-    let canvasHeight
-    let ctx
-    let frameId
-    let curves
-    let particles
+    this.canvas = null
+    this.canvasWidth = null
+    this.canvasHeight = null
+    this.ctx = null
+    this.frameId = null
+    this.curves = null
+    this.particles = null
 
     this.animate = this.animate.bind(this)
     this.renderCurves = this.renderCurves.bind(this)
@@ -152,7 +152,7 @@ class LogoOne extends Component {
   animate() {
     this.frameId = requestAnimationFrame(this.animate)
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-    //this.renderCurves()
+    //this.renderCurves() //optional
     this.particles.forEach((particle) => {
       particle.draw(this.ctx)
       particle.updatePos()
@@ -160,7 +160,7 @@ class LogoOne extends Component {
   }
 
 
-  renderCurves() {
+  renderCurves() {//optional
     const curveColor = '#222'
     const curveLineWidth = 1
 
