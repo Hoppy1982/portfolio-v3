@@ -1,0 +1,44 @@
+.countryContainer {
+  border: solid #222 3px;
+  width: 90vw;
+  margin: 3em;
+  height: 150px;
+}
+
+.countryChart {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: flex-start;
+  height: 120px;
+  width: 100%;
+}
+
+.yearlyData {
+  border: solid black 1px;
+  flex: 1 1 auto;
+  height: 120px;
+  width: 1vw;
+}
+
+.yearlyBar {
+  position: relative;
+  top: -12px;
+  width: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.yearlyData p {
+  transform: rotate(90deg);
+  font-size: 0.7em;
+  font-weight: bold;
+  position: relative;
+  top: 110%;
+}
+
+.yearlyData div {
+  width: 100%;
+}

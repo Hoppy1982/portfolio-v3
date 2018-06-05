@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import EnergyProductionGraphs from './EnergyProductionGraphs'
 import './contentTwo.css'
 
 
@@ -21,17 +22,6 @@ class ContentTwo extends Component {
   }
 
 
- /*Jakes advice
-   const promises = countries.map(this.fetchPopulation);
-
-   Promise
-     .all(promises)
-     .then(([country1data, country2data]) => {
-
-     });
- */
-
-
   fetchData() {
     this.setState({allCountriesData: []})
 
@@ -48,7 +38,7 @@ class ContentTwo extends Component {
           })
         }
       })
-      .then(() => console.log(this.state.allCountriesData))
+      //.then(() => console.log(this.state.allCountriesData))// dev whilst get EnergyProductionGraphs component working reet
   }
 
 
@@ -270,7 +260,7 @@ class ContentTwo extends Component {
 //----------------------------------------------------------------
   render() {
     return(
-      <p>CONTENT TWO PLACEHOLDER</p>
+      <EnergyProductionGraphs energyData={this.state.allCountriesData} />
     )
   }
 }
