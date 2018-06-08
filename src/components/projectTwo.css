@@ -5,3 +5,8 @@
 .projectWrapper {
   width: 100%;
 }
+
+h4 {
+  margin-top: 1.5em;
+  text-align: center;
+}

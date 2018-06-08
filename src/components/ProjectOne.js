@@ -70,6 +70,7 @@ class ProjectOne extends Component {
   render() {
     return(
       <div>
+        <h4>Particle Alphabet</h4>
         <div className='controls'>
           <div>
             <span className='control'>Type in the box:</span>
@@ -91,7 +92,6 @@ class ProjectOne extends Component {
             />
           </div>
           <div className='contentDescription'>
-            <h4>Particle Alphabet</h4>
             <p>
               I made this in plain old javascript without using any libraries other
               than React with the idea that it would be good practice at using

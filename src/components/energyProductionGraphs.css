@@ -4,6 +4,7 @@
 
 .countryContainer {
   border: solid #222 2px;
+  border-top-right-radius: 24px;
   width: 94%;
   margin-left: auto;
   margin-right: auto;
@@ -44,12 +45,31 @@
 
 .yearlyBar--clean {
   background: #52af4f;
-  border: solid #b2e8b0 2px;
+  border: solid #b2e8b0 1px;
 }
 
 .yearlyBar--dirty {
   background: #683411;
-  border: solid #cc7d49 2px;
+  border: solid #cc7d49 1px;
+}
+
+.yearlyBar--nuclear {
+  background: #364256;
+  border: solid #a6badb 1px;
+}
+
+.yearlyBar--nuclear {
+  background: #af8346;
+  border: solid #e2b26f 1px;
+}
+
+.yearlyBar--hydro {
+  background: #364256;
+  border: solid #a6badb 1px;
+}
+
+.clean0, .dirty0, .nuclear0, .hydro0 {
+  display: none;
 }
 
 .yearlyData p {

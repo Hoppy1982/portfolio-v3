@@ -19,7 +19,7 @@ class EnergyProductionGraphs extends Component {
               <h5>{countryName}</h5>
               <div className='countryChart'>
                 {countryData.map((yearlyData) => {
-                  const {
+                  let {
                     year,
                     population,
                     consumptionPerCapita,
@@ -35,20 +35,25 @@ class EnergyProductionGraphs extends Component {
                     totalNuclear
                   } = yearlyData
 
-                  const cleanStyle = {
-                    height: `${percentClean}%`
-                  }
+                  if (percentClean < 0.5) {percentClean = 0}
+                  if (percentDirty < 0.5) {percentDirty = 0}
+                  if (percentNuclear < 0.5) {percentNuclear = 0}
+                  if (percentHydro < 0.5) {percentHydro = 0}
 
-                  const dirtyStyle = {
-                    height: `${percentDirty}%`
-                  }
+                  const dirtyStyle = {height: `${percentDirty}%`}
+                  const nuclearStyle = {height: `${percentNuclear}%`}
+                  const cleanStyle = {height: `${percentClean}%`}
+                  const hydroStyle = {height: `${percentHydro}%`}
+
 
                   return (
                     <div key={year} className='yearlyData'>
                       <p>{year}</p>
                       <div className='yearlyBar'>
-                        <div className='yearlyBar--clean' style={cleanStyle}></div>
-                        <div className='yearlyBar--dirty' style={dirtyStyle}></div>
+                        <div className={`yearlyBar--clean clean${percentClean}`} style={cleanStyle}></div>
+                        <div className={`yearlyBar--hydro hydro${percentHydro}`} style={hydroStyle}></div>
+                        <div className={`yearlyBar--nuclear nuclear${percentNuclear}`} style={nuclearStyle}></div>
+                        <div className={`yearlyBar--dirty dirty${percentDirty}`} style={dirtyStyle}></div>
                       </div>
                     </div>
                   )
