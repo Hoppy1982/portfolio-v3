@@ -16,7 +16,7 @@ class EnergyProductionGraphs extends Component {
 
           return (
             <div key={countryId} className='countryContainer'>
-              <h3>{countryName}</h3>
+              <h5>{countryName}</h5>
               <div className='countryChart'>
                 {countryData.map((yearlyData) => {
                   const {
@@ -36,21 +36,19 @@ class EnergyProductionGraphs extends Component {
                   } = yearlyData
 
                   const cleanStyle = {
-                    backgroundColor: 'lightgreen',
-                    height: `${percentClean}%`,
+                    height: `${percentClean}%`
                   }
 
                   const dirtyStyle = {
-                    backgroundColor: 'brown',
-                    height: `${percentDirty}%`,
+                    height: `${percentDirty}%`
                   }
 
                   return (
                     <div key={year} className='yearlyData'>
                       <p>{year}</p>
                       <div className='yearlyBar'>
-                        <div style={cleanStyle}></div>
-                        <div style={dirtyStyle}></div>
+                        <div className='yearlyBar--clean' style={cleanStyle}></div>
+                        <div className='yearlyBar--dirty' style={dirtyStyle}></div>
                       </div>
                     </div>
                   )

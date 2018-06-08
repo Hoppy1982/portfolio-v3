@@ -7,7 +7,7 @@ class LogoOneParticle extends Particle {
   }
 
   draw(ctx) {
-    const color = 'black'
+    const color = 'white'
     ctx.beginPath()
     ctx.fillStyle = color
     ctx.arc(this.coords.x, this.coords.y, 2, 0, Math.PI * 2, false)

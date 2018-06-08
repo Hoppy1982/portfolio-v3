@@ -1,26 +1,24 @@
 import React, { Component } from 'react'
+import {
+  BrowserRouter,
+  Route,
+  Link,
+  Switch,
+} from 'react-router-dom'
 import './mainContent.css'
 import ContentHome from './ContentHome'
-import ContentOne from './ContentOne'
-import ContentTwo from './ContentTwo'
+import ProjectsAll from './ProjectsAll'
 
 
 class MainContent extends Component {
   render() {
     return(
       <main>
-        {
-          this.props.content === 'home' &&
-            <ContentHome />
-        }
-        {
-          this.props.content === 'particleAlphabet#1' &&
-            <ContentOne />
-        }
-        {
-          this.props.content === 'worldBankAPI' &&
-          <ContentTwo />
-        }
+        <Switch>
+          <Route exact path='/' component={ContentHome} />
+          <Route path='/about' component={ContentHome} />
+          <Route path='/projects' component={ProjectsAll} />
+        </Switch>
       </main>
     )
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './particleAlphabetOne.css'
+import './projectOneParticleAlphabet.css'
 
 import canvasHelpers from '../utils/canvasHelpers'
 import lettersLib from '../utils/lettersLib'
@@ -8,7 +8,7 @@ import HoldPatternParticle from '../classes/HoldPatternParticle'
 import CharPatternParticle from '../classes/CharPatternParticle'
 
 
-class ParticleAlphabetOne extends Component {
+class ProjectOneParticleAlphabet extends Component {
   constructor(props) {
     super(props)
 
@@ -224,4 +224,4 @@ class ParticleAlphabetOne extends Component {
   }
 }
 
-export default ParticleAlphabetOne
+export default ProjectOneParticleAlphabet

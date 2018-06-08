@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import EnergyProductionGraphs from './EnergyProductionGraphs'
-import './contentTwo.css'
+import './projectTwo.css'
 
 
-class ContentTwo extends Component {
+class ProjectTwo extends Component {
   constructor(props) {
     super(props)
 
@@ -260,10 +260,12 @@ class ContentTwo extends Component {
 //----------------------------------------------------------------
   render() {
     return(
-      <EnergyProductionGraphs energyData={this.state.allCountriesData} />
+      <div className='projectWrapper'>
+        <EnergyProductionGraphs energyData={this.state.allCountriesData} />
+      </div>
     )
   }
 }
 
 
-export default ContentTwo
+export default ProjectTwo

@@ -23,7 +23,7 @@ class MainHeader extends Component {
       <header>
         <LogoOne />
         <div ref={"bottomLine"} className="bottomLine"></div>
-        <Nav onSelectContent={this.props.onSelectContent}/>
+        <Nav />
       </header>
     )
   }

@@ -2,6 +2,6 @@
   box-sizing: border-box;
 }
 
-canvas {
-  flex: 0 0 auto;
+.projectWrapper {
+  width: 100%;
 }

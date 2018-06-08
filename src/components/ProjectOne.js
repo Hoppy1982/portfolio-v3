@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import ParticleAlphabetOne from './ParticleAlphabetOne'
-import './contentOne.css'
+import ParticleAlphabetOne from './ProjectOneParticleAlphabet'
+import './projectOne.css'
 
 
-class ContentOne extends Component {
+class ProjectOne extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -138,4 +138,4 @@ class ContentOne extends Component {
 }
 
 
-export default ContentOne
+export default ProjectOne

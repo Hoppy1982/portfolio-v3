@@ -1,34 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
 .countryContainer {
-  border: solid #222 3px;
-  width: 90vw;
-  margin: 3em;
-  height: 150px;
+  border: solid #222 2px;
+  width: 94%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 240px;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .countryChart {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  height: 120px;
+  height: 100%;
   width: 100%;
+  overflow-x: scroll;
 }
 
 .yearlyData {
-  border: solid black 1px;
   flex: 1 1 auto;
-  height: 120px;
-  width: 1vw;
+  height: 140px;
+  width: 1%;
+  min-width: 10px;
 }
 
 .yearlyBar {
   position: relative;
-  top: -12px;
-  width: 10px;
+  top: -14px;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+
+.yearlyBar--clean {
+  background: #52af4f;
+  border: solid #b2e8b0 2px;
+}
+
+.yearlyBar--dirty {
+  background: #683411;
+  border: solid #cc7d49 2px;
 }
 
 .yearlyData p {

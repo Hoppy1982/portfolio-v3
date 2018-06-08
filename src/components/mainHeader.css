@@ -10,17 +10,17 @@ header {
   padding-top: 1em;
   flex: 0 0 auto;
   font-family: lato;
+  background: #222;
 }
 
 .bottomLine {
-  height: 8px;
-  background: #222;
-  border-radius: 4px;
+  height: 4px;
+  background: #fff;
   margin-top: 1em;
-  width: 4%;
-  transition: width 1s;
+  width: 0%;
+  transition: width 1.5s;
 }
 
 .bottomLineWide {
-  width: 86%;
+  width: 100%;
 }

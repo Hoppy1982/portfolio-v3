@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 nav {
   flex: 0 0 auto;
   background: #222;
@@ -6,23 +10,33 @@ nav {
   color: white;
 }
 
-ul {
+.navbar {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 
-li {
+.navbar__link {
+  flex: 0 1 auto;
   list-style: none;
   height: 2em;
   line-height: 2em;
-  margin-left: 1em;
-  margin-right: 1em;
+  margin-left: 8px;
+  margin-right: 8px;
+  background: #ddd;
+  color: #222;
+  font-weight: 600;
+  width: 10em;
+  text-align: center;
 }
 
-li:hover {
+.navLink:hover {
   cursor: pointer;
+}
+
+.active {
+  background: white;
 }
