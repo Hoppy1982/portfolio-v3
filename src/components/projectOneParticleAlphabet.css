@@ -3,6 +3,6 @@
 }
 
 #particleOneCanvas {
-  border: solid #222 4px;
-  flex: 0 0 auto;
+  border: solid grey 4px;
+  background: #222;
 }
