@@ -23,7 +23,12 @@
   font-family: lato;
 }
 
-.canvasAndControlsContainer {}
+.canvasAndControlsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
 .canvasWrapper {
   display: flex;
@@ -32,18 +37,32 @@
 }
 
 .controls {
+  margin-top: 0.5em;
+  background: #222;
+  border: solid #222 4px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  max-width: 400px;
+  justify-content: space-around;
 }
 
-.control {
-  margin: 0.5em;
+.controls__inputDesc {
+  font-weight: 600;
+  margin-left: 3em;
+  background: #222;
+  color: white;
+}
+
+input {
+  width: 40%;
+  height: 2em;
+  font-size: 1.2em;
+}
+
+.controls__button {
+  height: 50px;
+  width: 50%;
 }
 
 .projectDescription, .howItWorks {
@@ -89,5 +108,11 @@
   }
   .projectLayout {
     width: 80%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .controls {
+    width: 90%;
   }
 }

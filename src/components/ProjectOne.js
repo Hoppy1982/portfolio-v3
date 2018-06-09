@@ -51,11 +51,11 @@ class ProjectOne extends Component {
   updateCanvasDimensions() {
     let desiredWidth
 
-    if(window.innerWidth <= 600) {
+    if(window.innerWidth <= 400) {
       desiredWidth  =  window.innerWidth * 0.9
     }
 
-    if(window.innerWidth > 600) {
+    if(window.innerWidth > 400) {
       desiredWidth  =  400
     }
 
@@ -86,12 +86,12 @@ class ProjectOne extends Component {
               </div>
               <div className='controls'>
                 <div>
-                  <span className='control'>Type in the box:</span>
-                  <input type="text" value={this.state.value} onChange={this.contentOneHandleTargetWordChange} className='control'></input>
+                  <span className='controls__inputDesc'>Type in the box:</span>
+                  <input className='controls__input' type="text" value={this.state.value} onChange={this.contentOneHandleTargetWordChange} className='control'></input>
                 </div>
                 <div>
-                  <button onClick={this.contentOneHandleToggleWP} className='control'>Toggle Waypoints</button>
-                  <button onClick={this.contentOneHandleTogglePaths} className='control'>Toggle Paths</button>
+                  <button onClick={this.contentOneHandleToggleWP} className='controls__button'>Toggle Waypoints</button>
+                  <button onClick={this.contentOneHandleTogglePaths} className='controls__button'>Toggle Paths</button>
                 </div>
               </div>
             </div>
