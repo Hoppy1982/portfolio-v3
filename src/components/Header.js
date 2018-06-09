@@ -3,20 +3,31 @@ import './header.css'
 import LogoOne from './LogoOne'
 import Nav from './Nav'
 
+import {
+  Route
+} from 'react-router-dom'
+
 class Header extends Component {
   constructor(props) {
     super(props)
 
-    this.applyInitialCssTransitions = this.applyInitialCssTransitions.bind(this)
+    this.handleRouteChange = this.handleRouteChange.bind(this)
+  }
+
+  handleRouteChange() {
+    setTimeout(() => {
+      this.refs.bottomLine.classList.remove('bottomLineWide')
+    }, 10)
+
+    setTimeout(() => {
+      this.refs.bottomLine.classList.add('bottomLineWide')
+    }, 1000)
   }
 
   componentDidMount() {
-    setTimeout(this.applyInitialCssTransitions, 1000)
+    this.handleRouteChange()
   }
 
-  applyInitialCssTransitions() {
-    this.refs.bottomLine.classList.add("bottomLineWide")
-  }
 
   render() {
     return (
@@ -24,6 +35,7 @@ class Header extends Component {
         <LogoOne />
         <div ref={"bottomLine"} className="bottomLine"></div>
         <Nav />
+        <Route onChange={this.handleRouteChange()}/>
       </header>
     )
   }
