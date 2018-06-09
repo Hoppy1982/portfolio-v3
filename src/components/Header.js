@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './mainHeader.css'
+import './header.css'
 import LogoOne from './LogoOne'
 import Nav from './Nav'
 
-class MainHeader extends Component {
+class Header extends Component {
   constructor(props) {
     super(props)
 
@@ -29,4 +29,4 @@ class MainHeader extends Component {
   }
 }
 
-export default MainHeader
+export default Header

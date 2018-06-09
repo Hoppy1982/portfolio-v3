@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EnergyProductionGraphs from './EnergyProductionGraphs'
+import ProjectTwoCharts from './ProjectTwoCharts'
 import './projectTwo.css'
 
 
@@ -262,7 +262,7 @@ class ProjectTwo extends Component {
     return(
       <div className='projectWrapper'>
         <h4>Energy Production Data From World Bank API</h4>
-        <EnergyProductionGraphs energyData={this.state.allCountriesData} />
+        <ProjectTwoCharts energyData={this.state.allCountriesData} />
       </div>
     )
   }

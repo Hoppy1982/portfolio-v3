@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './energyProductionGraphs.css'
+import './projectTwoCharts.css'
 
 
-class EnergyProductionGraphs extends Component {
+class ProjectTwoCharts extends Component {
 
   render() {
    const energyData = this.props.energyData
@@ -68,4 +68,4 @@ class EnergyProductionGraphs extends Component {
 }
 
 
-export default EnergyProductionGraphs
+export default ProjectTwoCharts
