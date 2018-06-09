@@ -11,10 +11,43 @@ h2 {
   text-align: center;
 }
 
+.ProjectTwoControlsLayoutContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .projectTwoControls {
+  margin-right: 20%;
   margin-top: 1em;
-  height: 50px;
-  border: solid green 4px;
+  height: 60px;
+  background: #222;
+  border: solid #222 4px;
+  border-top-right-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.countryOne__dropdown {
+  height: 100%;
+  width: 120px;
+}
+
+.countryOne__dropdown__label {
+  height: 50%;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding-top: 4px;
+}
+
+.countryOne__dropdown__control {
+  height: 50%;
+  width: 100%;
+  font-size: 1.2em;
 }
 
 .stuffUsed {

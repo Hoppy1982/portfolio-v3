@@ -9,16 +9,17 @@ class ProjectTwo extends Component {
 
     this.state = {
       baseUrl: 'http://api.worldbank.org/v2',
-      countries: [
-        'GBR',
-        'DEU'
-      ],
       yearFrom: 1960,
       yearTo: 2016,
       showPercents: true,
       showAbsolute: true,
       allCountriesData: []
     }
+
+    this.countries = [
+      'GBR',
+      'DEU'
+    ]
 
     this.handleCountryOneChange = this.handleCountryOneChange.bind(this)
   }
@@ -27,7 +28,7 @@ class ProjectTwo extends Component {
   fetchData() {
     this.setState({allCountriesData: []})
 
-    const promises = this.state.countries.map((country) => {
+    const promises = this.countries.map((country) => {
       return this.fetchCountryData(country)
     })
 
@@ -255,27 +256,14 @@ class ProjectTwo extends Component {
 
 handleCountryOneChange(event) {
   let val = event.target.value
-  this.setState((prevState) => {
-    let updatedCountries = Array.from(prevState.countries)
-    updatedCountries[0] = val
-    console.log(`${updatedCountries[0]} ${updatedCountries[1]} | val: ${val}`)
-    return{countries: updatedCountries}
-  })
-
-  setTimeout(() => {
-    this.fetchData()
-  }, 1000)
-
+  this.countries[1] = val
+  this.fetchData()
 }
 
 
 //------------------------------------------------------------LIFE CYCLE METHODS
   componentDidMount() {
     this.fetchData()
-  }
-
-  componentDidUpdate() {
-
   }
 
 
@@ -285,13 +273,23 @@ handleCountryOneChange(event) {
       <div className='projectWrapper'>
         <h2>Energy Production Data From World Bank API</h2>
 
-        <section className='projectTwoControls'>
-          <select onChange={this.handleCountryOneChange}>
-            <option value='GBR'>United Kingdon</option>
-            <option value='AUS'>Australia</option>
-            <option value='DEU'>Germany</option>
-          </select>
-        </section>
+        <div className='ProjectTwoControlsLayoutContainer'>
+          <section className='projectTwoControls'>
+            <div className='countryOne__dropdown'>
+              <div className='countryOne__dropdown__label'>Country #2</div>
+              <select className='countryOne__dropdown__control' onChange={this.handleCountryOneChange}>
+                <option value='AUS'>Australia</option>
+                <option value='CHN'>China</option>
+                <option value='DNK'>Denmark</option>
+                <option value='DEU'>Germany</option>
+                <option value='ISL'>Iceland</option>
+                <option value='NLD'>Netherlands</option>
+                <option value='NOR'>Norway</option>
+                <option value='USA'>USA</option>
+              </select>
+            </div>
+          </section>
+        </div>
 
         <ProjectTwoCharts energyData={this.state.allCountriesData} />
 
