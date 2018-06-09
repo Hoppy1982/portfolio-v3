@@ -85,11 +85,11 @@ class ProjectOne extends Component {
                 />
               </div>
               <div className='controls'>
-                <div>
-                  <span className='controls__inputDesc'>Type in the box:</span>
+                <div className='controls__inputContainer'>
+                  <div className='controls__inputDesc'>Type in the box:</div>
                   <input className='controls__input' type="text" value={this.state.value} onChange={this.contentOneHandleTargetWordChange} className='control'></input>
                 </div>
-                <div>
+                <div className='controls__buttonsContainer'>
                   <button onClick={this.contentOneHandleToggleWP} className='controls__button'>Toggle Waypoints</button>
                   <button onClick={this.contentOneHandleTogglePaths} className='controls__button'>Toggle Paths</button>
                 </div>

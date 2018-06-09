@@ -19,9 +19,11 @@ class ProjectTwo extends Component {
       showAbsolute: true,
       allCountriesData: []
     }
+
+    this.handleCountryOneChange = this.handleCountryOneChange.bind(this)
   }
 
-
+//----------------------------------------------------------------CUSTOM METHODS
   fetchData() {
     this.setState({allCountriesData: []})
 
@@ -251,9 +253,29 @@ class ProjectTwo extends Component {
   }
 
 
+handleCountryOneChange(event) {
+  let val = event.target.value
+  this.setState((prevState) => {
+    let updatedCountries = Array.from(prevState.countries)
+    updatedCountries[0] = val
+    console.log(`${updatedCountries[0]} ${updatedCountries[1]} | val: ${val}`)
+    return{countries: updatedCountries}
+  })
+
+  setTimeout(() => {
+    this.fetchData()
+  }, 1000)
+
+}
+
+
 //------------------------------------------------------------LIFE CYCLE METHODS
   componentDidMount() {
     this.fetchData()
+  }
+
+  componentDidUpdate() {
+
   }
 
 
@@ -262,7 +284,26 @@ class ProjectTwo extends Component {
     return(
       <div className='projectWrapper'>
         <h2>Energy Production Data From World Bank API</h2>
+
+        <section className='projectTwoControls'>
+          <select onChange={this.handleCountryOneChange}>
+            <option value='GBR'>United Kingdon</option>
+            <option value='AUS'>Australia</option>
+            <option value='DEU'>Germany</option>
+          </select>
+        </section>
+
         <ProjectTwoCharts energyData={this.state.allCountriesData} />
+
+        <div className='stuffUsed'>
+          <h4 className='stuffUsed__heading'>Stuff Used</h4>
+          <ul className='stuffUsed__list'>
+            <li>Html</li>
+            <li>Css</li>
+            <li>Javascript (lots of fetch & promises!)</li>
+            <li>React</li>
+          </ul>
+        </div>
       </div>
     )
   }

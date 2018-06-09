@@ -10,3 +10,28 @@ h2 {
   margin-top: 1.5em;
   text-align: center;
 }
+
+.projectTwoControls {
+  margin-top: 1em;
+  height: 50px;
+  border: solid green 4px;
+}
+
+.stuffUsed {
+  margin: 1em;
+}
+
+.stuffUsed__heading {
+  text-align: center;
+}
+
+.stuffUsed__list {
+  margin-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  list-style: none;
+  font-weight: 600;
+}
