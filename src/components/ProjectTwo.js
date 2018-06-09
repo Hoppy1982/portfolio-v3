@@ -261,7 +261,7 @@ class ProjectTwo extends Component {
   render() {
     return(
       <div className='projectWrapper'>
-        <h4>Energy Production Data From World Bank API</h4>
+        <h2>Energy Production Data From World Bank API</h2>
         <ProjectTwoCharts energyData={this.state.allCountriesData} />
       </div>
     )

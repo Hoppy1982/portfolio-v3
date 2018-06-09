@@ -21,7 +21,7 @@ class Header extends Component {
 
     setTimeout(() => {
       this.refs.bottomLine.classList.add('bottomLineWide')
-    }, 1000)
+    }, 500)
   }
 
   componentDidMount() {

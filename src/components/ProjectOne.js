@@ -70,18 +70,18 @@ class ProjectOne extends Component {
   render() {
     return(
       <div>
-        <h4>Particle Alphabet</h4>
-        <div className='controls'>
-          <div>
-            <span className='control'>Type in the box:</span>
-            <input type="text" value={this.state.value} onChange={this.contentOneHandleTargetWordChange} className='control'></input>
-          </div>
-          <div>
-            <button onClick={this.contentOneHandleToggleWP} className='control'>Toggle Waypoints</button>
-            <button onClick={this.contentOneHandleTogglePaths} className='control'>Toggle Paths</button>
-          </div>
-        </div>
         <div className='contentContainer'>
+          <h2 className='projectHeading' >Particle Alphabet</h2>
+          <div className='controls'>
+            <div>
+              <span className='control'>Type in the box:</span>
+              <input type="text" value={this.state.value} onChange={this.contentOneHandleTargetWordChange} className='control'></input>
+            </div>
+            <div>
+              <button onClick={this.contentOneHandleToggleWP} className='control'>Toggle Waypoints</button>
+              <button onClick={this.contentOneHandleTogglePaths} className='control'>Toggle Paths</button>
+            </div>
+          </div>
           <div className='canvasComponentWrapper'>
             <ParticleAlphabetOne
               canvasWidth={this.state.contentOneCanvasWidth}
@@ -124,8 +124,8 @@ class ProjectOne extends Component {
               is dependent on the longest word provided. Letter particles are given
               target vertex to fly to.
             </p>
-            <h4>Tech</h4>
-            <ul>
+            <h4 className='stuffUsed__heading'>Stuff Used</h4>
+            <ul className='stuffUsed__list'>
               <li>Javascript</li>
               <li>Canvas</li>
               <li>React</li>

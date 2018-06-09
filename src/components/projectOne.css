@@ -8,10 +8,12 @@
   justify-content: space-around;
   align-items: flex-start;
   font-family: lato;
+  background: #9cafce;
 }
 
 .canvasComponentWrapper {
   margin-top: 2em;
+  background: #222;
 }
 
 .contentDescription {
@@ -29,17 +31,23 @@
   margin-bottom: 0.5em;
 }
 
-h4 {
+.projectHeading {
   margin-top: 0.5em;
   text-align: center;
 }
 
-.contentDescription ul {
+.stuffUsed__heading {
+  margin-top: 1em;
+}
+
+.stuffUsed__list {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   font-size: 0.8em;
+  list-style: none;
+  font-weight: 500;
 }
 
 .controls {

@@ -18,12 +18,11 @@ class CharPatternParticle extends Particle {
 
   draw(ctx) {
     ctx.beginPath()
-    ctx.lineWidth = 3
-    let rgb = canvasHelpers.colorBetweenTwoColors(this.distMoved, '#000000', '#0000ff')
-    ctx.strokeStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
-    ctx.fillStyle = 'white'
-    ctx.arc(this.coords.x, this.coords.y, 2, 0, Math.PI * 2, false)
-    ctx.stroke()
+    //let rgb = canvasHelpers.colorBetweenTwoColors(this.distMoved, '#000000', '#a9a9a9')
+    //ctx.strokeStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
+    ctx.fillStyle = 'grey'
+    ctx.arc(this.coords.x, this.coords.y, 3, 0, Math.PI * 2, false)
+    //ctx.stroke()
     ctx.fill()
   }
 
@@ -34,7 +33,7 @@ class CharPatternParticle extends Particle {
         let pointsAtY = charPatternParticles[index + this.pointsAt].coords.y
         ctx.beginPath()
         ctx.lineWidth = 3
-        let rgb = canvasHelpers.colorBetweenTwoColors(this.distMoved, '#ffffff', '#0000ff')
+        let rgb = canvasHelpers.colorBetweenTwoColors(this.distMoved, '#ffffff', '#a9a9a9')
         ctx.strokeStyle = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`
         ctx.moveTo(this.coords.x, this.coords.y)
         ctx.lineTo(pointsAtX, pointsAtY)
