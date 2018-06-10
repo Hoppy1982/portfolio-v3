@@ -9,16 +9,13 @@ class ProjectTwo extends Component {
 
     this.state = {
       baseUrl: 'http://api.worldbank.org/v2',
-      yearFrom: 1960,
-      yearTo: 2016,
-      showPercents: true,
-      showAbsolute: true,
+      showPercents: true, //should show absolute values when false
       allCountriesData: []
     }
 
     this.countries = [
       'GBR',
-      'DEU'
+      'AUS'
     ]
 
     this.handleCountryOneChange = this.handleCountryOneChange.bind(this)
@@ -46,8 +43,6 @@ class ProjectTwo extends Component {
 
 
   fetchCountryData(country) {
-    console.log(`Fetching data for: ${country}..`)
-
     const populationPromise = this.fetchPopulation(country)
     const consumptionPromise = this.fetchConsumption(country)
     const percentCleanPromise = this.fetchPercentClean(country)//wind & solar
@@ -285,13 +280,14 @@ handleCountryOneChange(event) {
                 <option value='ISL'>Iceland</option>
                 <option value='NLD'>Netherlands</option>
                 <option value='NOR'>Norway</option>
+                <option value='GBR'>UK</option>
                 <option value='USA'>USA</option>
               </select>
             </div>
           </section>
         </div>
 
-        <ProjectTwoCharts energyData={this.state.allCountriesData} />
+        <ProjectTwoCharts energyData={this.state.allCountriesData} showPercents={this.state.showPercents}/>
 
         <div className='stuffUsed'>
           <h4 className='stuffUsed__heading'>Stuff Used</h4>
