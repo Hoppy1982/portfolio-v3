@@ -38,11 +38,6 @@ function PercentsChart(props) {
                   percentNuclear,
                 } = yearlyData
 
-                if (percentClean < 0.5) {percentClean = 0}
-                if (percentDirty < 0.5) {percentDirty = 0}
-                if (percentNuclear < 0.5) {percentNuclear = 0}
-                if (percentHydro < 0.5) {percentHydro = 0}
-
                 const dirtyStyle = {height: `${percentDirty}%`}
                 const nuclearStyle = {height: `${percentNuclear}%`}
                 const cleanStyle = {height: `${percentClean}%`}
@@ -81,7 +76,7 @@ function AbsolutesChart(props) {
         return (
           <div key={countryId + i} className='countryContainer countryContainer--total'>{/*key name using index is a smell.*/}
             <h5>{countryName}</h5>
-            <div className='countryChart'>
+            <div className='countryChart countryChart-total'>
               {countryData.map((yearlyData) => {
                 let {
                   year,
@@ -91,11 +86,6 @@ function AbsolutesChart(props) {
                   totalNuclear
                 } = yearlyData
 
-                if (totalClean < 10000000000) {totalClean = 0}
-                if (totalDirty < 10000000000) {totalDirty = 0}
-                if (totalNuclear < 10000000000) {totalNuclear = 0}
-                if (totalHydro < 10000000000) {totalHydro = 0}
-
                 const dirtyStyle = {height: `${totalDirty * 0.00000000001}px`}
                 const nuclearStyle = {height: `${totalNuclear * 0.00000000001}px`}
                 const cleanStyle = {height: `${totalClean * 0.00000000001}px`}
@@ -103,13 +93,13 @@ function AbsolutesChart(props) {
 
                 return (
                   <div key={year} className='yearlyData'>
-                    <p>{year}</p>
-                    <div className='yearlyBar'>
+                    <div className='yearlyBar yearlyBar--total'>
                       <div className={`yearlyBar--clean clean${totalClean}`} style={cleanStyle}></div>
                       <div className={`yearlyBar--hydro hydro${totalHydro}`} style={hydroStyle}></div>
                       <div className={`yearlyBar--nuclear nuclear${totalNuclear}`} style={nuclearStyle}></div>
                       <div className={`yearlyBar--dirty dirty${totalDirty}`} style={dirtyStyle}></div>
                     </div>
+                    <p>{year}</p>
                   </div>
                 )
               })}
@@ -117,6 +107,32 @@ function AbsolutesChart(props) {
           </div>
         )
       })}
+    </div>
+  )
+}
+
+//working on splitting CHart components down like below..
+function OneYearBarAbsolute(props) {
+  const year = props.year
+  const totalClean = props.totalClean
+  const totalDirty = props.totalDirty
+  const totalNuclear = props.totalNuclear
+  const totalHydro = props.totalHydro
+  const yScaleFactor = 0.00000000001
+  const dirtyPxHeight = {height: `${totalDirty * yScaleFactor}px`}
+  const nuclearPxHeight = {height: `${totalNuclear * yScaleFactor}px`}
+  const cleanPxHeight = {height: `${totalClean * yScaleFactor}px`}
+  const hydroPxHeight = {height: `${totalHydro * yScaleFactor}px`}
+
+  return(
+    <div className='oneYear--totals'>
+      <p className='oneYear--totals__year'>{year}</p>
+      <div className='oneYear--totals__bar'>
+        <div className='oneYear--totals__bar__section--clean' style={cleanPxHeight}></div>
+        <div className='oneYear--totals__bar__section--hydro' style={hydroPxHeight}></div>
+        <div className='oneYear--totals__bar__section--nuuclear' style={nuclearPxHeight}></div>
+        <div className='oneYear--totals__bar__section--dirty' style={dirtyPxHeight}></div>
+      </div>
     </div>
   )
 }
