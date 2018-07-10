@@ -8,7 +8,7 @@ class ProjectTwo extends Component {
     super(props)
 
     this.state = {
-      baseUrl: 'http://api.worldbank.org/v2',
+      baseUrl: 'https://api.worldbank.org/v2',
       showPercents: true, //should show absolute values when false
       allCountriesData: []
     }
@@ -19,6 +19,7 @@ class ProjectTwo extends Component {
     ]
 
     this.handleCountryOneChange = this.handleCountryOneChange.bind(this)
+    this.handleTogglePercentAbsolute = this.handleTogglePercentAbsolute.bind(this)
   }
 
 //----------------------------------------------------------------CUSTOM METHODS
@@ -249,11 +250,17 @@ class ProjectTwo extends Component {
   }
 
 
-handleCountryOneChange(event) {
-  let val = event.target.value
-  this.countries[1] = val
-  this.fetchData()
-}
+  handleCountryOneChange(event) {
+    let val = event.target.value
+    this.countries[1] = val
+    this.fetchData()
+  }
+
+  handleTogglePercentAbsolute() {
+    this.setState(prevState => {
+      return {showPercents: !prevState.showPercents}
+    })
+  }
 
 
 //------------------------------------------------------------LIFE CYCLE METHODS
@@ -271,7 +278,7 @@ handleCountryOneChange(event) {
         <div className='ProjectTwoControlsLayoutContainer'>
           <section className='projectTwoControls'>
             <div className='countryOne__dropdown'>
-              <div className='countryOne__dropdown__label'>Country #2</div>
+              <div className='countryOne__dropdown__label'>Comparison Country</div>
               <select className='countryOne__dropdown__control' onChange={this.handleCountryOneChange}>
                 <option value='AUS'>Australia</option>
                 <option value='CHN'>China</option>
@@ -284,6 +291,10 @@ handleCountryOneChange(event) {
                 <option value='USA'>USA</option>
               </select>
             </div>
+            <button className='projectTwoControls__togglePercentAbsolute' onClick={this.handleTogglePercentAbsolute}>
+              Percent /<br></br>
+              Absolute
+            </button>
           </section>
         </div>
 
@@ -294,7 +305,7 @@ handleCountryOneChange(event) {
           <ul className='stuffUsed__list'>
             <li>Html</li>
             <li>Css</li>
-            <li>Javascript (lots of fetch & promises!)</li>
+            <li>Javascript (lots of fetch & promises)</li>
             <li>React</li>
           </ul>
         </div>
