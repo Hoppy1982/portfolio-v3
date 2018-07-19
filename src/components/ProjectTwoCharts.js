@@ -7,81 +7,84 @@ class ProjectTwoCharts extends Component {
     const energyData = this.props.energyData
     const showPercents = this.props.showPercents
 
-    if(showPercents === true) {
-      return <PercentsChart energyData={energyData} />
-    } else if (showPercents === false) {
-      return <RenderAllAbsolutesBarCharts energyData={energyData} />
-    }
+    return (
+      <div>
+        {energyData.map((countryData, i) => {
+          const countryId = countryData[0].countryId
+          const countryName = countryData[0].countryName
+
+          if(showPercents === true) {
+            return <RenderPercentsBarChart
+              key={countryId + i}//key name using index is a smell.
+              countryName={countryName}
+              countryData={countryData}
+            />
+
+          } else if (showPercents === false) {
+            return <RenderAbsolutesBarChart
+              key={countryId + i}//key name using index is a smell.
+              countryName={countryName}
+              countryData={countryData}
+            />
+          }
+
+        })}
+      </div>
+    )
   }
 }
 
 
-function PercentsChart(props) {
-  const energyData = props.energyData
-
-  return(
-    <div>
-      {energyData.map((countryData, i) => {
-        const countryId = countryData[0].countryId
-        const countryName = countryData[0].countryName
-
-        return (
-          <div key={countryId + i} className='countryContainer countryContainer--percent'>{/*key name using index is a smell.*/}
-            <h5>{countryName}</h5>
-            <div className='countryChart'>
-              {countryData.map((yearlyData) => {
-                let {
-                  year,
-                  percentClean,
-                  percentDirty,
-                  percentHydro,
-                  percentNuclear,
-                } = yearlyData
-
-                const dirtyStyle = {height: `${percentDirty}%`}
-                const nuclearStyle = {height: `${percentNuclear}%`}
-                const cleanStyle = {height: `${percentClean}%`}
-                const hydroStyle = {height: `${percentHydro}%`}
-
-                return (
-                  <div key={year} className='yearlyData yearlyData--percent'>
-                    <p>{year}</p>
-                    <div className='yearlyBar'>
-                      <div className={`yearlyBar--clean clean${percentClean}`} style={cleanStyle}></div>
-                      <div className={`yearlyBar--hydro hydro${percentHydro}`} style={hydroStyle}></div>
-                      <div className={`yearlyBar--nuclear nuclear${percentNuclear}`} style={nuclearStyle}></div>
-                      <div className={`yearlyBar--dirty dirty${percentDirty}`} style={dirtyStyle}></div>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
-
-function RenderAllAbsolutesBarCharts(props) {
-  const energyData = props.energyData
+function RenderPercentsBarChart(props) {
+  const countryName = props.countryName
+  const countryData = props.countryData
 
   return (
-    <div>
-      {energyData.map((countryData, i) => {
-        const countryId = countryData[0].countryId
-        const countryName = countryData[0].countryName
+    <div className='countryContainer countryContainer--percent'>
+      <h5>{countryName}</h5>
+      <div className='countryChart'>
 
-        return <RenderAbsolutesBarChart
-          key={countryId + i}//key name using index is a smell.
-          countryName={countryName}
-          countryData={countryData}
-        />
-      })}
+        {countryData.map((yearlyData, i) => {
+          return <RenderPercentsBar
+            key={yearlyData.year + i}//key name using index is a smell.
+            year={yearlyData.year}
+            percentClean={yearlyData.percentClean}
+            percentDirty={yearlyData.percentDirty}
+            percentHydro={yearlyData.percentHydro}
+            percentNuclear={yearlyData.percentNuclear}
+          />
+        })}
+
+      </div>
     </div>
   )
 }
+
+
+function RenderPercentsBar(props) {
+  const year = props.year
+  const percentClean = props.percentClean
+  const percentDirty = props.percentDirty
+  const percentNuclear = props.percentNuclear
+  const percentHydro = props.percentHydro
+  const dirtyStyle = {height: `${percentDirty}%`}
+  const nuclearStyle = {height: `${percentNuclear}%`}
+  const cleanStyle = {height: `${percentClean}%`}
+  const hydroStyle = {height: `${percentHydro}%`}
+
+  return (
+    <div className='yearlyData yearlyData--percent'>
+      <p>{year}</p>
+      <div className='yearlyBar'>
+        <div className={`yearlyBar--clean clean${percentClean}`} style={cleanStyle}></div>
+        <div className={`yearlyBar--hydro hydro${percentHydro}`} style={hydroStyle}></div>
+        <div className={`yearlyBar--nuclear nuclear${percentNuclear}`} style={nuclearStyle}></div>
+        <div className={`yearlyBar--dirty dirty${percentDirty}`} style={dirtyStyle}></div>
+      </div>
+    </div>
+  )
+}
+
 
 
 function RenderAbsolutesBarChart(props) {
