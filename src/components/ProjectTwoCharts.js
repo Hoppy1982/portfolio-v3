@@ -67,7 +67,7 @@ function PercentsChart(props) {
 function AbsolutesChart(props) {
   const energyData = props.energyData
 
-  return(
+  return (
     <div>
       {energyData.map((countryData, i) => {
         const countryId = countryData[0].countryId
@@ -111,7 +111,7 @@ function AbsolutesChart(props) {
   )
 }
 
-//working on splitting CHart components down like below..
+//working on splitting chart components down like below..
 function OneYearBarAbsolute(props) {
   const year = props.year
   const totalClean = props.totalClean
