@@ -10,7 +10,7 @@ class ProjectTwoCharts extends Component {
     if(showPercents === true) {
       return <PercentsChart energyData={energyData} />
     } else if (showPercents === false) {
-      return <AbsolutesChart energyData={energyData} />
+      return <RenderAllAbsolutesBarCharts energyData={energyData} />
     }
   }
 }
@@ -64,7 +64,7 @@ function PercentsChart(props) {
 }
 
 
-function AbsolutesChart(props) {
+function RenderAllAbsolutesBarCharts(props) {
   const energyData = props.energyData
 
   return (
@@ -73,46 +73,44 @@ function AbsolutesChart(props) {
         const countryId = countryData[0].countryId
         const countryName = countryData[0].countryName
 
-        return (
-          <div key={countryId + i} className='countryContainer countryContainer--total'>{/*key name using index is a smell.*/}
-            <h5>{countryName}</h5>
-            <div className='countryChart countryChart-total'>
-              {countryData.map((yearlyData) => {
-                let {
-                  year,
-                  totalClean,
-                  totalDirty,
-                  totalHydro,
-                  totalNuclear
-                } = yearlyData
-
-                const dirtyStyle = {height: `${totalDirty * 0.00000000001}px`}
-                const nuclearStyle = {height: `${totalNuclear * 0.00000000001}px`}
-                const cleanStyle = {height: `${totalClean * 0.00000000001}px`}
-                const hydroStyle = {height: `${totalHydro * 0.00000000001}px`}
-
-                return (
-                  <div key={year} className='yearlyData'>
-                    <div className='yearlyBar yearlyBar--total'>
-                      <div className={`yearlyBar--clean clean${totalClean}`} style={cleanStyle}></div>
-                      <div className={`yearlyBar--hydro hydro${totalHydro}`} style={hydroStyle}></div>
-                      <div className={`yearlyBar--nuclear nuclear${totalNuclear}`} style={nuclearStyle}></div>
-                      <div className={`yearlyBar--dirty dirty${totalDirty}`} style={dirtyStyle}></div>
-                    </div>
-                    <p>{year}</p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        )
+        return <RenderAbsolutesBarChart
+          key={countryId + i}//key name using index is a smell.
+          countryName={countryName}
+          countryData={countryData}
+        />
       })}
     </div>
   )
 }
 
-//working on splitting chart components down like below..
-function OneYearBarAbsolute(props) {
+
+function RenderAbsolutesBarChart(props) {
+  const countryName = props.countryName
+  const countryData = props.countryData
+
+  return (
+    <div className='countryContainer countryContainer--total'>
+      <h5>{countryName}</h5>
+      <div className='countryChart countryChart-total'>
+
+        {countryData.map((yearlyData, i) => {
+          return <RenderAbsolutesBar
+            key={yearlyData.year + i}//key name using index is a smell.
+            year={yearlyData.year}
+            totalClean={yearlyData.totalClean}
+            totalDirty={yearlyData.totalDirty}
+            totalHydro={yearlyData.totalHydro}
+            totalNuclear={yearlyData.totalNuclear}
+          />
+        })}
+
+      </div>
+    </div>
+  )
+}
+
+
+function RenderAbsolutesBar(props) {
   const year = props.year
   const totalClean = props.totalClean
   const totalDirty = props.totalDirty
@@ -124,15 +122,15 @@ function OneYearBarAbsolute(props) {
   const cleanPxHeight = {height: `${totalClean * yScaleFactor}px`}
   const hydroPxHeight = {height: `${totalHydro * yScaleFactor}px`}
 
-  return(
-    <div className='oneYear--totals'>
-      <p className='oneYear--totals__year'>{year}</p>
-      <div className='oneYear--totals__bar'>
-        <div className='oneYear--totals__bar__section--clean' style={cleanPxHeight}></div>
-        <div className='oneYear--totals__bar__section--hydro' style={hydroPxHeight}></div>
-        <div className='oneYear--totals__bar__section--nuuclear' style={nuclearPxHeight}></div>
-        <div className='oneYear--totals__bar__section--dirty' style={dirtyPxHeight}></div>
+  return (
+    <div className='yearlyData'>
+      <div className='yearlyBar yearlyBar--total'>
+        <div className={`yearlyBar--clean clean${totalClean}`} style={cleanPxHeight}></div>
+        <div className={`yearlyBar--hydro hydro${totalHydro}`} style={hydroPxHeight}></div>
+        <div className={`yearlyBar--nuclear nuclear${totalNuclear}`} style={nuclearPxHeight}></div>
+        <div className={`yearlyBar--dirty dirty${totalDirty}`} style={dirtyPxHeight}></div>
       </div>
+      <p>{year}</p>
     </div>
   )
 }
