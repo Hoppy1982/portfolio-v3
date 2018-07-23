@@ -40,9 +40,9 @@ function RenderPercentsBarChart(props) {
   const countryData = props.countryData
 
   return (
-    <div className='countryContainer countryContainer--percent'>
+    <div className='chart chart--percents'>
       <h5>{countryName}</h5>
-      <div className='countryChart'>
+      <div className='chart__graphic'>
 
         {countryData.map((yearlyData, i) => {
           return <RenderPercentsBar
@@ -73,13 +73,13 @@ function RenderPercentsBar(props) {
   const hydroStyle = {height: `${percentHydro}%`}
 
   return (
-    <div className='yearlyData yearlyData--percent'>
-      <p>{year}</p>
-      <div className='yearlyBar'>
-        <div className={`yearlyBar--clean clean${percentClean}`} style={cleanStyle}></div>
-        <div className={`yearlyBar--hydro hydro${percentHydro}`} style={hydroStyle}></div>
-        <div className={`yearlyBar--nuclear nuclear${percentNuclear}`} style={nuclearStyle}></div>
-        <div className={`yearlyBar--dirty dirty${percentDirty}`} style={dirtyStyle}></div>
+    <div className='chart__column chart__column--percents'>
+      <p className='chart__columns-label'>{year}</p>
+      <div className='chart__column-graphic'>
+        <div className={`chart__energy-graphic--clean clean${percentClean}`} style={cleanStyle}></div>
+        <div className={`chart__energy-graphic--hydro hydro${percentHydro}`} style={hydroStyle}></div>
+        <div className={`chart__energy-graphic--nuclear nuclear${percentNuclear}`} style={nuclearStyle}></div>
+        <div className={`chart__energy-graphic--dirty dirty${percentDirty}`} style={dirtyStyle}></div>
       </div>
     </div>
   )
@@ -92,9 +92,9 @@ function RenderAbsolutesBarChart(props) {
   const countryData = props.countryData
 
   return (
-    <div className='countryContainer countryContainer--total'>
+    <div className='chart'>
       <h5>{countryName}</h5>
-      <div className='countryChart countryChart-total'>
+      <div className='chart__graphic chart__graphic--absolutes'>
 
         {countryData.map((yearlyData, i) => {
           return <RenderAbsolutesBar
@@ -126,14 +126,14 @@ function RenderAbsolutesBar(props) {
   const hydroPxHeight = {height: `${totalHydro * yScaleFactor}px`}
 
   return (
-    <div className='yearlyData'>
-      <div className='yearlyBar yearlyBar--total'>
-        <div className={`yearlyBar--clean clean${totalClean}`} style={cleanPxHeight}></div>
-        <div className={`yearlyBar--hydro hydro${totalHydro}`} style={hydroPxHeight}></div>
-        <div className={`yearlyBar--nuclear nuclear${totalNuclear}`} style={nuclearPxHeight}></div>
-        <div className={`yearlyBar--dirty dirty${totalDirty}`} style={dirtyPxHeight}></div>
+    <div className='chart__column'>
+      <div className='chart__column-graphic'>
+        <div className={`chart__energy-graphic--clean clean${totalClean}`} style={cleanPxHeight}></div>
+        <div className={`chart__energy-graphic--hydro hydro${totalHydro}`} style={hydroPxHeight}></div>
+        <div className={`chart__energy-graphic--nuclear nuclear${totalNuclear}`} style={nuclearPxHeight}></div>
+        <div className={`chart__energy-graphic--dirty dirty${totalDirty}`} style={dirtyPxHeight}></div>
       </div>
-      <p>{year}</p>
+      <p className='chart__columns-label'>{year}</p>
     </div>
   )
 }

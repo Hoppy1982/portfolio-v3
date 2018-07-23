@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-.countryContainer {
+.chart {
   border: solid #222 2px;
   border-top-right-radius: 24px;
   width: 94%;
@@ -17,15 +17,11 @@
   padding-top: 0.5em;
 }
 
-.countryContainer--percent {
+.chart--percents {
   height: 240px;
 }
 
-.countryContainer--total {
-
-}
-
-.countryChart {
+.chart__graphic {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -36,71 +32,69 @@
   padding-top: 0.5em;
 }
 
-.countryChart-total {
+.chart__graphic--absolutes {
   align-items: flex-end;
   padding-top: 2em;
   padding-bottom: 2em;
 }
 
-.yearlyData {
+.chart__column {
   flex: 1 1 auto;
   width: 1%;
   min-width: 10px;
 }
 
-.yearlyData--percent {
+.chart__column--percents {
   height: 140px;
 }
 
-.yearlyBar {
+.chart__column-graphic {
   position: relative;
   top: -14px;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
-.yearlyBar--clean {
+.chart__energy-graphic--clean {
   background: #52af4f;
   border-color: #b2e8b0;
   border-style: solid;
   border-width: 0px 1px 0px 1px;
 }
 
-.yearlyBar--dirty {
-  background: #683411;
-  border-color: #cc7d49;
-  border-style: solid;
-  border-width: 0px 1px 0px 1px;
-}
-
-.yearlyBar--nuclear {
-  background: #af8346;
-  border-color: #e2b26f;
-  border-style: solid;
-  border-width: 0px 1px 0px 1px;
-}
-
-.yearlyBar--hydro {
+.chart__energy-graphic--hydro {
   background: #364256;
   border-color: #a6badb;
   border-style: solid;
   border-width: 0px 1px 0px 1px;
 }
 
+.chart__energy-graphic--nuclear {
+  background: #af8346;
+  border-color: #e2b26f;
+  border-style: solid;
+  border-width: 0px 1px 0px 1px;
+}
+
+.chart__energy-graphic--dirty {
+  background: #683411;
+  border-color: #cc7d49;
+  border-style: solid;
+  border-width: 0px 1px 0px 1px;
+}
+
+/*not strictly necessary now, used to get rid of zero value energy blocks if they have top or bottom borders*/
 .clean0, .dirty0, .nuclear0, .hydro0 {
   display: none;
 }
 
-.yearlyData p {
+.chart__columns-label {
   transform: rotate(90deg);
   font-size: 0.7em;
   font-weight: bold;
   position: relative;
   top: 110%;
-}
-
-.yearlyData div {
-  width: 100%;
 }

@@ -7,7 +7,7 @@ class ProjectOne extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      contentOneTargetWord: 'PARTICLE ALPHABET ONE',
+      contentOneTargetWord: 'PARTICLE ALPHABET',
       contentOneRenderWaypoints: false,
       contentOneRenderPaths: false,
       contentOneCanvasWidth: 100,
