@@ -275,11 +275,72 @@ class ProjectTwo extends Component {
       <div className='projectWrapper'>
         <h2>Energy Production Data From World Bank API</h2>
 
+        <div className='projectArticlesAll'>
+          <article className='projectArticle'>
+            <h3 className='projectArticle__heading'>Project Desciption</h3>
+            <p className='projectArticle__text'>
+              This project combines data from a few different endpoints of the
+              world bank API to show either energy production sources as a percentage
+              or in absolute terms. I was trying to illustrate that while a greater
+              of energy is being produced from clean sources that the total energy
+              produced from fossil fuels might still be rising. Data for the UK is
+              always shown, then you can select a second country to compare it to.
+              I decided against including a vertical scale for the absolute values for
+              two reasons, firstly I think the numbers are meaningless to most people and
+              secondly I was trying to keep the chart as simple as possible as it's just
+              made using simple css. The learning objective for me doing this was practice
+              at using an API, not a graphics library. In hindsight, this is not the best way of
+              displaying the data for energy production in absolute terms. Either I could
+              have used a logarithmic scale or I think better yet, a pie chart of
+              which it's area equated to energy amount produced. In that way you could still illustrate
+              a comparision between the UK and somewhere else...although you'd need a slider for the year
+              perhaps.
+
+            </p>
+          </article>
+
+          <article className='projectArticle'>
+            <h3 className='projectArticle__heading'>How it works</h3>
+            <p className='projectArticle__text'>
+              The world bank API has loads of good information but finding the specific
+              data I wanted was a pain. I used several different fetch calls and then
+              combined the responses. For example one fetch was used to get population
+              data for each country, then another for energy consumption per capita.
+              They were combined to get total energy usage per country. In total 6 separate
+              fetch requests are made (consumption per capita, population, percentage energy produced
+              from solar & wind combined, percentage from hydro, percentage from nuclear and percentage
+              from fossil fuels). There must be some other energy sources, such as burning rubbish that
+              I didn't account for so the percentage columns have a slight variation in height. That
+              could be fixed by including an 'other sources' block when I get around to it.
+              I used promise.all to harvest up all the different responses before doing the mathsy stuff.
+            </p>
+          </article>
+        </div>
+
         <div className='ProjectTwoControlsLayoutContainer'>
+          <section className='chartKey'>
+            <div className='chartKey__element'>
+              <div className='chartKey__colorBlock chartKey__colorBlock--clean'></div>
+              <p className='chartKey__text'>Solar & Wind</p>
+            </div>
+            <div className='chartKey__element'>
+              <div className='chartKey__colorBlock chartKey__colorBlock--hydro'></div>
+              <p className='chartKey__text'>Hydro</p>
+            </div>
+            <div className='chartKey__element'>
+              <div className='chartKey__colorBlock chartKey__colorBlock--nuclear'></div>
+              <p className='chartKey__text'>Nuclear</p>
+            </div>
+            <div className='chartKey__element'>
+              <div className='chartKey__colorBlock chartKey__colorBlock--dirty'></div>
+              <p className='chartKey__text'>Fossil Fuels</p>
+            </div>
+          </section>
+
           <section className='projectTwoControls'>
-            <div className='countryOne__dropdown'>
-              <div className='countryOne__dropdown__label'>Comparison Country</div>
-              <select className='countryOne__dropdown__control' onChange={this.handleCountryOneChange}>
+            <div className='projectTwoControls__dropDown'>
+              <div className='projectTwoControls__dropDownLabel'>Comparison Country</div>
+              <select className='projectTwoControls__dropDownList' onChange={this.handleCountryOneChange}>
                 <option value='AUS'>Australia</option>
                 <option value='CHN'>China</option>
                 <option value='DNK'>Denmark</option>

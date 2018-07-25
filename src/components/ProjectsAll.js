@@ -8,8 +8,8 @@ class ProjectsAll extends Component {
   render() {
     return(
       <div className='projectsWrapper'>
-        <ProjectTwo />
         <ProjectOne />
+        <ProjectTwo />
       </div>
     )
   }
