@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './about.css'
+import './sites.css'
 
 
-class About extends Component {
+class Sites extends Component {
   render() {
     return(
       <section>
@@ -13,4 +13,4 @@ class About extends Component {
 }
 
 
-export default About
+export default Sites

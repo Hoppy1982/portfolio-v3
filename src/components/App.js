@@ -8,7 +8,7 @@ import {
 import Header from './Header'
 import Footer from './Footer'
 import Home from './Home'
-import About from './About'
+import Sites from './Sites'
 import ProjectsAll from './ProjectsAll'
 import './app.css'
 
@@ -25,7 +25,7 @@ class App extends Component {
           <main>
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route path='/about' component={About} />
+              <Route path='/sites' component={Sites} />
               <Route path='/projects' component={ProjectsAll} />
             </Switch>
           </main>
