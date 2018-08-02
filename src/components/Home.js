@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     return(
       <section>
-        <p>PLACEHOLDER FOR HOME COMPONENT</p>
+        <p>Hello and welcome to my site, I built for a few reasons, to learn React, host some projects directly and to provide links to other things I've made / will make.</p>
       </section>
     )
   }
