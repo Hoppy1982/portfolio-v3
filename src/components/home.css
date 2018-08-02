@@ -1,3 +1,10 @@
 * {
   box-sizing: border-box;
 }
+
+.homepage-site-desc {
+  margin-left: 1em;
+  margin-right: 1em;
+  text-align: center;
+  font-size: 1.4em;
+}

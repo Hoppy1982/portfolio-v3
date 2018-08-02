@@ -4,10 +4,11 @@
 
 .projectWrapper {
   width: 100%;
+  background: #ddd;
 }
 
 h2 {
-  margin-top: 1.5em;
+  padding-top: 1.5em;
   text-align: center;
 }
 

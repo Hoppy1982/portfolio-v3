@@ -22,6 +22,7 @@
   border: solid var(--sites-color-one) 8px;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   position: relative;
 }
@@ -72,13 +73,13 @@
     width: 640px;
   }
   .ext-site__img {
-    width: 320px;
+    width: 308px;
+    height: 304px;
   }
   .ext-site__desc {
     width: 320px;
     text-align: justify;
   }
   .ext-site__link {
-
   }
 }
