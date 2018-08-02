@@ -1,3 +1,84 @@
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --sites-color-one: #222;
+  --sites-color-two: #444;
+}
+
+.ext-sites-all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.ext-site {
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: solid var(--sites-color-one) 8px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.ext-site__img {
+  width: 100%;
+  flex: 1 1 auto;
+}
+
+.ext-site__desc {
+  width: 100%;
+  padding: 1em;
+  text-align: center;
+  flex: 1 1 auto;
+}
+
+.ext-site__link {
+  width: 100%;
+  height: 100%;
+  background-color: var(--sites-color-one);
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  transition: 2.0s;
+  color: #fff;
+  text-decoration: none;
+  font-size: 2em;
+  text-align: center;
+  padding-top: 2em;
+}
+.ext-site__link:hover {
+  opacity: 0.9;
+}
+
+/*sites component media queries*/
+@media only screen and (min-width: 320px) {
+  .ext-site {
+    width: 320px;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .ext-site{
+    flex-direction: row;
+    height: 320px;
+    width: 640px;
+  }
+  .ext-site__img {
+    width: 320px;
+  }
+  .ext-site__desc {
+    width: 320px;
+    text-align: justify;
+  }
+  .ext-site__link {
+
+  }
+}
