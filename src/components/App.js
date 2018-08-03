@@ -4,6 +4,7 @@ import {
   Route,
   Link,
   Switch,
+  Redirect,
 } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
@@ -17,14 +18,18 @@ class App extends Component {
     super(props)
   }
 
-
   render() {
+    if (window.location.pathname === '/') {
+      console.log(window.location.pathname)
+      return <Redirect to='/home' />
+    }
+
     return (
       <div id="pageContainer">
-        <Header  />
+        <Header />
           <main>
             <Switch>
-              <Route exact path='/portfolio-v3/' component={Home} />
+              {/*<Route exact path='/' component={Home} />not req*/}
               <Route path='/home' component={Home} />
               <Route path='/sites' component={Sites} />
               <Route path='/projects' component={ProjectsAll} />
