@@ -19,11 +19,6 @@ class App extends Component {
   }
 
   render() {
-    if (window.location.pathname === '/') {
-      console.log(window.location.pathname)
-      return <Redirect to='/home' />
-    }
-
     return (
       <div id="pageContainer">
         <Header />
@@ -33,6 +28,8 @@ class App extends Component {
               <Route path='/home' component={Home} />
               <Route path='/sites' component={Sites} />
               <Route path='/projects' component={ProjectsAll} />
+              <Redirect from='/' to='/home' />
+              <Redirect from='/portfolio-v3/' to='/home' />
             </Switch>
           </main>
         <Footer />
