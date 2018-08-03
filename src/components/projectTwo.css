@@ -15,7 +15,8 @@ h2 {
 .ProjectTwoControlsLayoutContainer {
   width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
   margin-top: 1em;
 }
@@ -24,7 +25,8 @@ h2 {
   display: flex;
   flex-direction: column;
   margin-top: 1em;
-  margin-right: 2em;
+  margin-right: 1em;
+  margin-left: 1em;
 }
 
 .chartKey__element {
@@ -56,7 +58,7 @@ h2 {
 
 .projectTwoControls {
   margin-top: 1em;
-  margin-left: 2em;
+  margin-left: 1em;
   height: 60px;
   background: #222;
   border: solid #222 4px;
@@ -141,4 +143,10 @@ h2 {
   font-size: 0.8em;
   list-style: none;
   font-weight: 600;
+}
+
+@media screen and (min-width: 480px) {
+  .ProjectTwoControlsLayoutContainer {
+    flex-direction: row;
+  }
 }
