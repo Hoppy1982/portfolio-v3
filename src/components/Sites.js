@@ -18,7 +18,8 @@ class Sites extends Component {
             Site I'm working on to keep a record of things I've learnt
             and as a reference for things I often use.
           </p>
-          <a className='ext-site__link' href='https://hoppy1982.github.io/learning-record/'>..visit site..</a>
+          {/*<a className='ext-site__link' href='https://hoppy1982.github.io/learning-record/'>..visit site..</a>*/}
+          <a className='ext-site__link' href='https://www.learning-record.markhopcraft.co.uk/'>..visit site..</a>
         </div>
 
         <div className='ext-site'>

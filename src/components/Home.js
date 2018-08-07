@@ -8,8 +8,8 @@ class Home extends Component {
       <section>
         <p className='homepage-site-desc'>
           Hello and welcome to my site! I built it for a few reasons, to learn React,
-           host some projects directly and to provide links to other things I've made.
-           I've got plenty more ideas and intend to keep adding them here.
+          host some projects directly and to provide links to other things I've made.
+          I've got plenty more ideas and intend to keep adding them here.
          </p>
       </section>
     )
