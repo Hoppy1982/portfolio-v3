@@ -14,9 +14,10 @@ class Sites extends Component {
         <div className='ext-site'>
           <img className='ext-site__img' src={thumbnailCodingRef}></img>
           <p className='ext-site__desc'>
-            <strong>Coding Reference:- </strong>
-            Site I'm working on to keep a record of things I've learnt
-            and as a reference for things I often use.
+            <strong>Coding Reference: </strong>
+            This site is for personal coding reference;
+            I aim to record some things as I am learning in my own words to later refer to.
+            It’s an easily navigable site for quick reference to regularly used items.
           </p>
           {/*<a className='ext-site__link' href='https://hoppy1982.github.io/learning-record/'>..visit site..</a>*/}
           <a className='ext-site__link' href='https://www.learning-record.markhopcraft.co.uk/'>..visit site..</a>
@@ -25,7 +26,7 @@ class Sites extends Component {
         <div className='ext-site'>
           <img className='ext-site__img' src={thumbnailSimon}></img>
           <p className='ext-site__desc'>
-            <strong>Simon Game:- </strong>
+            <strong>Simon Game: </strong>
             This was one of the first projects when I started learning to code in 2016
             from working through the frontend cert of freeCodeCamp.
           </p>
@@ -35,7 +36,7 @@ class Sites extends Component {
         <div className='ext-site'>
           <img className='ext-site__img' src={thumbnail2DCarousel}></img>
           <p className='ext-site__desc'>
-            <strong>2D Carousel:- </strong>
+            <strong>2D Carousel: </strong>
             This an idea for a kind of carousel that worked in 2 dimensions.
             It works by destroying and remaking elements as you scroll. I used it
             on an older version of my portfolio site to make a nav menu with categories
@@ -47,7 +48,7 @@ class Sites extends Component {
         <div className='ext-site'>
           <img className='ext-site__img' src={thumbnailCalc}></img>
           <p className='ext-site__desc'>
-            <strong>Calculator:- </strong>
+            <strong>Calculator: </strong>
             Another freeCodeCamp project from a couple of years ago. On this one I was trying to
             get as close to the look of the example project without looking at the source css.
           </p>

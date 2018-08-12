@@ -7,9 +7,13 @@ class Home extends Component {
     return(
       <section>
         <p className='homepage-site-desc'>
-          Hello and welcome to my site! I built it for a few reasons, to learn React,
-          host some projects directly and to provide links to other things I've made.
-          I've got plenty more ideas and intend to keep adding them here.
+          Hello and welcome to my site!
+          <br />
+          <br />
+          The motivation for buidling this site was to learn React,
+          as well as host my projects directly and provide links to other things I’ve built.
+          I’ve got lots of ideas, so there’s plenty more to come;
+          all will be continually added on this site as they come into fruition.
          </p>
       </section>
     )
